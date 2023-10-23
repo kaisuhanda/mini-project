@@ -1,0 +1,45 @@
+/*BANNER*/
+.banner {
+    position: relative;
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.backgroundImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.FindYourNextEvent {
+    color: white;
+    background-color: orange;
+    padding: 7px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    z-index: 2;
+    transition: .5s;
+}
+
+.FindYourNextEvent:hover{
+    background-color: rgb(224, 146, 1);
+}
+
+
+/*SELECT*/
+.popular{
+    font-size: 30px;
+    margin-left: 100px;
+    font-weight: 800;
+}
+.popularIn select{
+    color: rgb(29, 69, 245);
+    margin-left: 4px;
+}
+
