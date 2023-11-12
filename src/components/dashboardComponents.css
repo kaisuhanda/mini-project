@@ -1,0 +1,625 @@
+/* HEADER */
+.header {
+    display: flex;
+    border-bottom: 1px solid rgb(202, 207, 212);
+}
+
+.logo {
+    padding: 20px 0;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Satisfy', cursive;
+    font-size: 30px;
+}
+
+.logo span {
+    color: orange;
+}
+
+.header ul {
+    padding: 30px 0;
+    list-style: none;
+    display: flex;
+    margin-left: 100px;
+}
+
+.header ul li {
+    margin: 0 20px;
+    transition: .5s;
+}
+
+.header ul li:hover {
+    color: orange;
+}
+
+.header input {
+    height: 30px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(247, 251, 255);
+    border: 1px solid rgb(202, 207, 212);
+}
+
+.header input:active {
+    border-color: orange;
+}
+
+.inputWrapper {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginSignup {
+    display: flex;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+.login,
+.signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    margin-right: 30px;
+    height: 45px;
+}
+
+.pushToTheRight {
+    display: flex;
+    margin-left: auto;
+}
+
+.login {
+    border: 1px solid black;
+    border-radius: 25px;
+    transition: .5s;
+}
+
+.login:hover {
+    border-color: orange;
+    color: orange;
+}
+
+.signup {
+    background-color: orange;
+    border-radius: 25px;
+    transition: .5s;
+    color: white;
+}
+
+.signup:hover {
+    background-color: rgb(224, 146, 1);
+}
+
+
+
+/*BANNER*/
+.banner {
+    position: relative;
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.backgroundImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.FindYourNextEvent {
+    color: white;
+    background-color: orange;
+    padding: 7px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    z-index: 2;
+    transition: .5s;
+}
+
+.FindYourNextEvent:hover {
+    background-color: rgb(224, 146, 1);
+}
+
+
+
+/* CATEGORIES */
+.eventCategories {
+    background-color: white;
+}
+
+.eventCategories ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: space-evenly;
+    padding: 30px 60px;
+}
+
+.catContainer {
+    text-align: center;
+}
+
+.catContainerImg {
+    width: 120px;
+    height: 120px;
+    border-radius: 90px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.catContainerImg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.catContainer:hover .catContainerImg::before {
+    opacity: 1;
+}
+
+
+
+/*POPULAR CATEGORIES*/
+.mainPopular {
+    padding: 30px 100px;
+}
+
+.popularCategories {
+    list-style: none;
+    display: flex;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.popularCategories li {
+    margin-right: 50px;
+    color: rgb(73, 73, 73);
+    font-weight: 600;
+    position: relative;
+}
+
+.popularCategories li::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: black;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    transition: width 0.05s;
+}
+
+.popularCategories li:hover::after {
+    width: 100%;
+}
+
+.popularCategories li:hover {
+    color: black;
+}
+
+.popular {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.popularIn select {
+    color: rgb(29, 69, 245);
+    margin-left: 4px;
+    background-color: transparent;
+}
+
+
+
+/*EVENTS TABLE*/
+.eventList{
+    padding: 30px 100px;
+}
+.eventList h2{
+    font-size: 25px;
+    font-weight: 600;
+}
+.eventCard {
+    width: 250px;
+    font-weight: 600;
+    border: 0;
+    margin-right: 40px;
+    box-sizing: border-box;
+}
+
+.eventCardList{
+    display: flex;
+    list-style: none;
+    margin-top: 40px;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 20px 0;
+}
+.eventCard img{
+    width: 100%;
+    height: 150px;
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+.eventCardCreator{
+    display: flex;
+}
+.views i{
+    margin-right: 20px;
+}
+.views{
+    font-size: 25px;
+    font-weight: 600;
+}
+/* .eventsIn {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.eventsTable {
+    width: 100%;
+    border-collapse: separate;
+    margin-top: 50px;
+    display: flex;
+    list-style: none;
+}
+.eventsTable tbody {
+    font-weight: 300;
+    font-size: 20px;
+    width: 100%;
+}
+
+.eventsIn i {
+    margin-right: 20px;
+}
+
+.eventsIn {
+    font-size: 25px;
+}
+
+.eventsTable li {
+    width: 250px;
+    font-weight: 600;
+    border: 0;
+    border-top: 20px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+}
+
+.whiteContainer:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.whiteContainer {
+    background-color: white;
+    transition: .5s;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.02), 5px 0 5px rgba(0, 0, 0, 0.02);
+}
+
+.tdContainer {
+    padding: 10px;
+}
+
+.eventsTable tbody td img {
+    width: 100%;
+    height: 150px;
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.locationCaption {
+    color: gray;
+    font-size: 15px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.timeCaption {
+    color: orange;
+    font-size: 17px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.creatorCaption {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 5px 0;
+    font-weight: 400;
+}
+
+.iContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+}
+
+.creatorContainer {
+    display: flex;
+}
+
+.creatorContainer p {
+    margin-left: 5px;
+} */
+
+/* .onetwo {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.onetwo ul {
+    width: fit-content;
+    display: flex;
+    list-style: none;
+    margin: 10px 0;
+}
+
+.onetwo ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: navy;
+    color: white;
+    font-weight: 500;
+    margin-left: 7px;
+    border-radius: 4px;
+    padding: 3px 15px;
+    transition: .5s;
+}
+
+.onetwo ul li:hover {
+    background-color: rgb(0, 0, 76);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+} */
+
+
+/*CREATORSLIST*/
+.creatorsList {
+    padding: 30px 100px;
+}
+
+.creatorsList h2 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.creatorsList h2 i {
+    margin-right: 20px;
+}
+
+.creatorsList ul {
+    display: flex;
+    list-style: none;
+    margin-top: 40px;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 20px 0;
+}
+
+.creatorsList ul::-webkit-scrollbar {
+    /* display: none; */
+}
+
+.creatorsList ul li {
+    width: 200px;
+    margin-right: 40px;
+    text-align: center;
+    height: 250px;
+    transition: .5s;
+    flex: 0 0 auto;
+    padding: 10px;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.015), 5px 0 5px rgba(0, 0, 0, 0.015);
+}
+
+.creatorsList ul li:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.profilePicContainer {
+    height: 40%;
+}
+
+.profilePicContainer img {
+    height: 100px;
+    width: 100%;
+}
+
+.profileContainer {
+    text-align: center;
+    height: 30%;
+}
+
+.profileContainer h3 {
+    font-weight: 700;
+}
+
+.followers {
+    color: gray;
+}
+
+.creatorsList ul li button {
+    background-color: rgb(0, 106, 255);
+    padding: 5px 30px;
+    color: white;
+    border-radius: 8px;
+    margin: 25px 0;
+}
+
+
+/*LOCATIONS*/
+.locations {
+    overflow: hidden;
+    padding: 30px 100px;
+}
+
+.locationsList {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.locationsList ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 250px;
+}
+
+.locationsList ul li {
+    margin: 0 10px;
+    min-width: 300px;
+    max-width: 300px;
+    height: 200px;
+    overflow: hidden;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.locationName {
+    transform: translateY(-130%);
+    margin-left: 15px;
+    z-index: 1;
+    color: white;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.locationsList ul li img {
+    width: 300px;
+    height: 200px;
+    transition: transform 0.5s;
+}
+
+.locationsList ul li img:hover {
+    transform: scale(1.1);
+    /* Zoom in the image by 10% */
+}
+
+/* .locations{
+    padding: 30px 100px;
+    overflow: hidden;
+}
+.locations h2{
+    font-size: 25px;
+    font-weight: 600;
+}
+.locations li img{
+    width: 300px;
+    height: 200px;
+}
+.locations li{
+    width: fit-content;
+    height: 200px;
+}
+.locations ul{
+    display: flex;
+    list-style: none;
+} */
+
+/*FOOTER*/
+.footer {
+    background-color: navy;
+    color: white;
+    padding: 30px 100px 70px;
+    display: flex;
+}
+
+.leftDiv {
+    display: flex;
+}
+
+.leftDiv ul {
+    list-style: none;
+    margin-right: 80px;
+}
+
+.leftDiv ul li {
+    width: 100%;
+}
+
+.liHeader {
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.rightDiv {
+    width: 100%;
+}
+
+.content {
+    font-size: 25px;
+    width: fit-content;
+    margin-left: 200px;
+}
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+.content input {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    width: 320px;
+    height: 30px;
+    padding: 4px;
+}
+
+.content button {
+    background-color: orange;
+    font-size: 20px;
+    padding: 5px 40px;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+.content button:hover {
+    background-color: rgb(224, 145, 0);
+}
+
+.footerLi {
+    display: flex;
+}
+
+.footerLi i {
+    font-size: 20px;
+}
+
+.socialMedia {
+    margin-left: 4px;
+}
+.iContainerFooter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+}

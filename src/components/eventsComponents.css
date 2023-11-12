@@ -1,0 +1,26 @@
+.sidebar{
+    padding: 0 50px;
+    width: fit-content;
+    font-size: 20px;
+    width: 300px;
+    border-right: 1px solid rgb(193, 193, 193);
+    height: 880px;
+}
+.filter{
+    font-weight: 700;
+    font-size: 25px;
+    padding: 20px 20px;
+}
+.locationContainer, .categoryContainer, .priceContainer{
+    padding: 30px 0;
+}
+.sidebar ul li{
+    list-style: none;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+.border{
+    height: 1px;
+    background-color: rgb(193, 193, 193);
+}
+

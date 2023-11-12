@@ -1,4 +1,4 @@
-import './components.css'
+import './dashboardComponents.css'
 
 function Header () {
     return (

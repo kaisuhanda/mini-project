@@ -1,4 +1,4 @@
-import './components.css'
+import './dashboardComponents.css'
 import Music from '../assets/Music.webp'
 import Nightlife from '../assets/Nightlife.webp'
 import Performing from '../assets/Performing.webp'

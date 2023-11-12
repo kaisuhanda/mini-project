@@ -1,37 +1,26 @@
 import './pages.css'
 import Layout from './layout'
-import eventBanner from '../assets/eventBanner2.webp'
+import Banner from '../components/banner'
 import Categories from '../components/categories'
-import PopularCategories from '../components/popularCategories'
 import EventList from '../components/eventList'
+import CreatorsList from '../components/creatorsList'
+import Locations from '../components/locationsList'
+// import Layout from './layout'
+// import Banner from '../components/dashboard/banner'
+// import Categories from '../components/dashboard/categories'
+// import EventList from '../components/dashboard/eventList'
+// import CreatorsList from '../components/dashboard/creatorsList'
+// import Locations from '../components/dashboard/locationsList'
 
 function DashboardPage() {
     return (
         <Layout>
-            <div className="banner">
-                <div className="imageContainer">
-                    <img src={eventBanner} alt="" className="backgroundImage" />
-                    <button className="FindYourNextEvent">
-                        Find you next event
-                    </button>
-                </div>
-            </div>
-
-            <Categories />
-
-            <div className="popular">
-                <div className="popularIn">
-                    Popular in
-                    <select name="popularLocation" placeholder="Surabaya">
-                        <option value="Surabaya">Surabaya</option>
-                        <option value="Jakarta">Jakarta</option>
-                        <option value="Bali">Bali</option>
-                    </select>
-                </div>
-                <PopularCategories/>
-                <EventList/>
-            </div>
-        </Layout>
+             <Banner/>
+             <Categories />
+             <EventList/>
+             <CreatorsList/>
+             <Locations/>
+         </Layout>
     )
 }
 

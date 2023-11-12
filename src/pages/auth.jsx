@@ -1,10 +1,10 @@
 import './pages.css'
 import Layout from './layout'
 
-function AuthPage () {
+function AuthPage() {
     return (
         <div>
-
+            <h1>auth</h1>
         </div>
     )
 }
