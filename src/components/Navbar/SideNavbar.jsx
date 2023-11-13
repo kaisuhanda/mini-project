@@ -3,7 +3,9 @@ import { BiArrowBack } from "react-icons/bi";
 
 const SideNavbar = (props) => {
     return (
-        <Box style={{ boxShadow: "0px 0px 10px black", backgroundColor: "rgb(251, 251, 251)", height: "100vh", width: "250px" }}>
+        <Box
+            display={props.display}
+            style={{ position: "fixed", boxShadow: "0px 2px 5px grey", backgroundColor: "rgb(251, 251, 251)", height: "100vh", width: "250px" }}>
             <Box w={250} h={20} textAlign={"center"} padding={8}>
                 logo disini
             </Box>
@@ -34,7 +36,7 @@ const SideNavbar = (props) => {
                 </Box>
             </Box>
             <Flex
-                padding={5}
+                padding={7}
                 justifyContent={"space-around"}
                 position={"absolute"}
                 bottom={0}
