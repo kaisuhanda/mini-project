@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react'
 import dotenv from 'dotenv';
 import { API_URL } from '../helper.js'
+import { globalState } from './redux/index.js'
+
 
 dotenv.config();
 console.log(API_URL);
@@ -19,5 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </ChakraProvider>
      </BrowserRouter>
   </Provider>
-
 )
+
+
+

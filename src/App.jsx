@@ -1,7 +1,7 @@
+
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import AuthPage from './pages/Auth'
-import DashboardPage from './pages/dasboard/index'
 import { Container } from '@chakra-ui/react'
 import Register from './pages/Register/index'
 import RegisterPromotor from '../src/pages/RegisterPromotor/index'
@@ -16,6 +16,11 @@ import ProfileUser from './pages/profileuser';
 import ResetPasswordPage from './pages/resetPassword'
 import DashboardPagePromotor from './pages/dashboardPromotor'
 import PotoProfile from './pages/profileuser/potoProfile'
+import DashboardPage from "./pages/dashboard"
+import EventPage from "./pages/event"
+import EventDetails from "./pages/eventDetails"
+import NotFoundPage from "./pages/404"
+
 
 function App() {
 
@@ -51,7 +56,7 @@ function App() {
   return (
 
       <Routes>
-        <Route path='/' element={<AuthPage />} />
+        <Route path='/auth' element={<AuthPage />} />
         <Route path='/dash' element={<DashboardPage />} />
         <Route path='/Register' element={<Register/>} />
         <Route path='/RegisterPromotor' element={<RegisterPromotor/>} />
@@ -61,9 +66,15 @@ function App() {
         <Route path='/account/resetPassword/' element={<ResetPasswordPage />} />
         <Route path='/dashboardPromotor' element={<DashboardPagePromotor />} />
         <Route path='/poto' element={<PotoProfile />} />
+        <Route path="/" element={<DashboardPage />}/>
+        <Route path="/events" element={<EventPage />}/>
+        <Route path="/event-details/:event_id" element={<EventDetails />}/>
+        <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     
   )
 };
+
+
 
 export default App

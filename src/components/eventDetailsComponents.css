@@ -1,0 +1,218 @@
+.headingDetails {
+    width: 400px;
+    height: 300px;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.eventPromoter {
+    margin-top: auto;
+}
+
+.headingDetails h2 {
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.headingDetails ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.headingDetails ul li {
+    display: flex;
+}
+
+.iContainer {
+    width: 16px;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.seperator {
+    height: 1px solid;
+    color: rgba(0, 0, 0, 0.02);
+    width: 100%;
+}
+
+
+
+.description {
+    width: 650px;
+}
+
+.ticket {
+    width: 400px;
+    height: fit-content;
+}
+.descriptionHeader {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    border-bottom: 1px solid gray;
+}
+.descriptionHeader li {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    color: gray;
+    position: relative;
+    transition: color 0.3s;
+}
+.descriptionHeader li.activeTab {
+    color: black;
+}
+
+.descriptionHeader {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.descriptionHeader li {
+  cursor: pointer;
+  padding: 10px;
+  color: gray; 
+  position: relative; 
+}
+
+.descriptionHeader li.activeTab {
+  color: black;
+}
+
+.activeTab {
+    border-bottom: 2px solid blue;
+    font-weight: 500;
+    color: black;
+}
+.activePage{
+    list-style: none;
+    display: block;
+}
+.ulContent{
+    padding: 20px 0;
+    list-style: none;
+}
+.ulContent ul li{
+    list-style: none;
+}
+
+
+.aTicket{
+    background-color: aliceblue;
+    margin-top: 20px;
+    padding: 20px 50px;
+}
+.aTicket i{
+    margin-right: 5px;
+}
+.aTicket h2{
+    font-weight: 500;
+}
+.aTicket p{
+    color: gray;
+}
+.until{
+    color: rgb(0, 89, 255);
+}
+.line {
+    margin-top: 20px;
+    border-top: 1px solid rgb(185, 185, 185); 
+    background-color: rgb(185, 185, 185);
+    width: 100%;
+}
+.aTicket h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+
+
+.checkout{
+    display: flex;
+}
+.checkout p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.iContainerlarge{
+    /* width: 40px;
+    height: 40px; */
+    font-size: 30px;
+    padding: 10px 20px;
+}
+.line2 {
+    margin-top: 10px;
+    border-top: 1px solid rgb(185, 185, 185); 
+    background-color: rgb(185, 185, 185);
+    margin: 0 20px;
+}
+.total{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+.buttonContainer{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+.buyTicket{
+    background-color: rgb(0, 89, 255);
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+    width: 200px;
+    border-radius: 5px;
+}
+.checkoutContainer{
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+.share{
+    margin-top: 20px;
+}
+.socialMediaIcons{
+    display: flex;
+    list-style: none;
+    margin-top: 10px;
+}
+.socialMediaIcons li{
+    border: 1px solid rgb(185, 185, 185);
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+.buyTicketTicket{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.buyTicketTicket button{
+    background-color: rgb(0, 89, 255);
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+    width: 100px;
+    border-radius: 5px;
+    height: fit-content
+}
