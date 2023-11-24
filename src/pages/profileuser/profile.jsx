@@ -87,7 +87,7 @@ const Profile = () => {
    
   };
   
-  return (<div>
+  return (<Box w={'auto'} >
      <div className="bagian1">
          <div className="bagian1a">
              <div className="bagian1b">Profile User</div>
@@ -110,13 +110,13 @@ const Profile = () => {
           onChange={handleProfilePictureChange}
           id="profilePictureInput"
         /></Card>
-         <Card w='90%' h={'100vh'} margin={'auto'} marginTop={10} shadow={'xs'} >
+         <Card w='90%' h={'auto'} margin={'auto'} marginTop={10} shadow={'xs'} >
          <Text textAlign={"center"} marginTop={'1%'} >Information</Text>
          <Text textAlign="left" marginTop="1%" marginLeft="1%" fontSize="20">
         Username
       </Text>
       <Input
-        w="98%"
+        w="auto"
         type="text"
         marginTop="1%"
         marginLeft="1%"
@@ -163,7 +163,7 @@ const Profile = () => {
        </Card>
          </Card>    
        </div>
-    </div>
+    </Box>
   );
   
 };

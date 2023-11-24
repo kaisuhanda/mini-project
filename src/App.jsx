@@ -1,7 +1,7 @@
 
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import AuthPage from './pages/Auth'
+import AuthPage from './pages/Auth/index'
 import { Container } from '@chakra-ui/react'
 import Register from './pages/Register/index'
 import RegisterPromotor from '../src/pages/RegisterPromotor/index'

@@ -107,7 +107,7 @@ export const login = (usernameOrEmail, password, navigate, setErrorMessage) => a
         navigate('/dashboardPromotor');
       } else {
         // Redirect other roles to the root page
-        navigate('/');
+        navigate('/auth');
       }
     } else {
       setErrorMessage(`Login failed: ${message}`);

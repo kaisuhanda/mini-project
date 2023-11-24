@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './dashboardComponents.css';
+import { Box, Button, Card, CardBody, Text, Input, InputGroup, InputRightElement, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from "@chakra-ui/react";
+import { useDisclosure } from '@chakra-ui/react';
+import { BsCalendar3 } from "react-icons/bs";
+import { BsFillFileEarmarkPersonFill } from "react-icons/bs";
 
 function Header() {
   const [eventsList, setEventsList] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const fetchEvents = async () => {
     let endpoint = 'http://localhost:2066/events';
@@ -61,13 +66,30 @@ function Header() {
         </div>
         <div className="loginSignup">
           <div className="login">
-            Log In
+          <Link to={'/auth'}> Log In </Link>
           </div>
-          <div className="signup">
+          <Link className="signup" onClick={onOpen}>
             Sign Up
-          </div>
+          </Link>
         </div>
       </div>
+      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+                         <ModalOverlay />
+                         <ModalContent>
+                             <ModalHeader>Create your account</ModalHeader>
+                             <ModalCloseButton />
+                             <ModalBody pb={6} >
+                                 <Button width={"45%"} h={"100"} type="button" margin={"auto"} border={'1px solid red'} marginRight={5} _hover={{bg:'red.500' , transition:'ease-in-out 0.6s', color:'white'}}>
+                                     <Box marginRight={'2'} > <BsFillFileEarmarkPersonFill /> </Box>
+                                     <Link to={"/Register"}>Pengguna</Link>
+                                 </Button>
+                                 <Button width={"45%"} h={"100"} type="button" margin={"auto"} border={'1px solid blue'} marginLeft={5} _hover={{bg:'blue.500', transition:'ease-in-out 0.6s', color:'white'}} >
+                                     <Box marginRight={'2'}> <BsCalendar3/> </Box>  
+                                     <Link to={"/RegisterPromotor"}>Promotor</Link>
+                                 </Button>
+                             </ModalBody>
+                         </ModalContent>
+                    </Modal>
     </div>
   );
 }

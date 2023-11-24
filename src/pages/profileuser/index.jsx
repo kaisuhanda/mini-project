@@ -29,7 +29,7 @@ const ProfileUser = () => {
     };
     
 
-    return <Box w={'101%'}>
+    return <Box w={'102%'}>
         <div className="sidenav">
             <div style={{cursor:"pointer"}} onClick={() => navigate('/')} className="ab">TicketWave</div>
             <div className="ac">
@@ -46,7 +46,7 @@ const ProfileUser = () => {
          <div className="first"> 
               <div className="akun1" >Tiket Saya</div> 
               <Menu >
-                        <MenuButton as={Button} className="akun2" colorScheme="pink">
+                        <MenuButton as={Button} className="akun2" colorScheme="orange">
                             account
                         </MenuButton>
                         <MenuList fontSize={20}>
@@ -59,11 +59,11 @@ const ProfileUser = () => {
               {/* <div className="akun3"> Buat Event</div> */}
          </div>
          <div className="second">
-         <div className="content">
+         <Box w={'90%'} marginLeft={40}>
         {activeContent === "profile" && <Profile />}
         {activeContent === "settings" && <Setting />}
         {activeContent === "orders" && <Orders />}
-      </div>
+      </Box>
          </div>
         </div> 
 
