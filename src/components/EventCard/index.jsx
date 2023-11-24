@@ -1,6 +1,6 @@
 import { Flex, Box, Button, ButtonGroup, color, Image, Text } from "@chakra-ui/react";
 
-const EventCard = (props) => {
+const EventCardDashboard = (props) => {
     return (
         <Flex
             position={"relative"}
@@ -13,6 +13,7 @@ const EventCard = (props) => {
             borderRadius={10}
             boxShadow={"md"}
             _hover={{ bgColor: "rgba(220, 220, 220, 0.4)" }}
+            marginBottom={4}
         >
             <Image
                 bgColor={"rgba(220, 220, 220, 0.4)"}
@@ -58,7 +59,7 @@ const EventCard = (props) => {
                     <Text
                         fontWeight={400}
                     >
-                        2023-11-11 16:00:00
+                        {props.start_date}
                     </Text>
                 </Box>
 
@@ -71,7 +72,7 @@ const EventCard = (props) => {
                     <Text
                         fontWeight={400}
                     >
-                        2023-11-11 16:00:00
+                        {props.end_date}
                     </Text>
                 </Box>
             </Flex>

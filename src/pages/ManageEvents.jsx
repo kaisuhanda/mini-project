@@ -1,24 +1,43 @@
 import EventHeader from "../components/EventHeader";
 import SideNavbar from "../components/Navbar/SideNavbar";
 import LayoutPage from "../components/LayoutEvent";
-import React from "react";
-import EventCard from "../components/EventCard";
+import React, { useEffect, useState } from "react";
+import EventCardDashboard from "../components/EventCard";
+import { API_CALL } from "../helper/helper";
+import { Flex } from "@chakra-ui/react";
 
 const ManageEventPage = (props) => {
-    const [data, setData] = React.useState([
-        {
-            id: 1
-
-        },
-        {
-            id: 2
+    const [events, setEvents] = useState([])
+    // console.log("state events from API", events[0].name);
+    useEffect(() => {
+        const getEvents = async () => {
+            try {
+                const result = await API_CALL.get("/events/1")
+                console.log("result getting event", result);
+                setEvents(result.data);
+            } catch (error) {
+                console.log("error getting events", error);
+            }
         }
-    ]);
+        getEvents()
+    }, [])
 
     return (
         <LayoutPage>
             <EventHeader />
-            <EventCard title="Lorem ipsum dolor sit amet, consectetur cras amet." category="Photography & Videography" />
+            {events?.map((val, idx) => {
+                console.log("VALL", val);
+                return (
+                    <EventCardDashboard
+                        key={idx}
+                        title={val.name}
+                        category={val["category.category"]}
+                        start_date={new Date(val.start_date).toLocaleDateString("id", { day: "numeric", month: "short", year: "numeric" }) + ", " + new Date(val.start_date).toLocaleTimeString("id")}
+                        end_date={new Date(val.end_date).toLocaleDateString("id", { day: "numeric", month: "short", year: "numeric" }) + ", " + new Date(val.end_date).toLocaleTimeString("id")}
+                    />
+                )
+            })
+            }
 
         </LayoutPage>
     )

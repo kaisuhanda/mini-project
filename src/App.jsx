@@ -20,6 +20,8 @@ import DashboardPage from "./pages/dashboard"
 import EventPage from "./pages/event"
 import EventDetails from "./pages/eventDetails"
 import NotFoundPage from "./pages/404"
+import CreateEvent from './pages/CreateEvent'
+import ManageEventPage from "./pages/ManageEvents"
 
 
 function App() {
@@ -56,19 +58,25 @@ function App() {
   return (
 
     <Routes>
+      {/* bagian e adi */}
       <Route path='/auth' element={<AuthPage />} />
-      <Route path='/dash' element={<DashboardPage />} />
       <Route path='/Register' element={<Register />} />
       <Route path='/RegisterPromotor' element={<RegisterPromotor />} />
       <Route path='/TypeAccount' element={<TypeAccount />} />
-      <Route path='/dashboard' element={<DashboardPageLogin />} />
       <Route path='/ProfileUser' element={<ProfileUser />} />
       <Route path='/account/resetPassword/' element={<ResetPasswordPage />} />
-      <Route path='/dashboardPromotor' element={<DashboardPagePromotor />} />
       <Route path='/poto' element={<PotoProfile />} />
+
+      {/* bagian e kai */}
       <Route path="/" element={<DashboardPage />} />
       <Route path="/events" element={<EventPage />} />
       <Route path="/event-details/:event_id" element={<EventDetails />} />
+
+      {/* bagian e khalid */}
+      <Route path='/dashboard' element={<ManageEventPage />} />
+      <Route path="/create-event" element={<CreateEvent />} />
+
+      {/* umum */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
 
