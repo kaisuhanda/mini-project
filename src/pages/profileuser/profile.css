@@ -1,0 +1,51 @@
+/* .bagian1{
+    background-color: aqua; 
+} */
+
+
+
+
+.bagian1 .bagian1a{
+    border: 1px solid rgba(207, 203, 203, 0.212);
+    width: 50%;
+    margin-left: 10%;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    position: relative;
+    top: 15px;
+
+}
+
+.bagian1 .bagian1b{
+    border: 1px solid rgba(128, 128, 128, 0);
+    width: 25%;
+    /* float: right; */
+    margin-right: 30px;
+    border-radius: 5px;
+    background-color: rgba(175, 175, 174, 0.148);
+    font-size: 15px;
+    color: rgb(128, 134, 139);
+}
+.bagian1 .bagian1c{
+    /* border: 1px solid blueviolet; */
+    width: 60%;
+    margin-left: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: rgb(128, 134, 139);
+}
+
+.bagian2a {
+    margin-top: 25px;
+    margin-left: 10%;
+}
+.bagian2b{
+    margin-left: 5%;
+    border-top: 1px solid rgba(46, 72, 93, 0.425);;
+    width: 90%;
+}
+.bagian2c{
+    margin: auto;
+    margin-top: 50px;
+}
