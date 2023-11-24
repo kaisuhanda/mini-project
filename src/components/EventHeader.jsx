@@ -1,7 +1,8 @@
-import { Flex, Input, Box, border, Avatar } from "@chakra-ui/react";
+import { Flex, Input, Box, border, Avatar, Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const EventHeader = (props) => {
-
+    const navigate = useNavigate();
 
     return (
         <Flex
@@ -10,14 +11,29 @@ const EventHeader = (props) => {
             width={{ base: "450px", md: "75%" }}
             boxShadow={"md"}
             padding={5}
-            justifyContent={"space-between"} >
+            justifyContent={"space-between"}
+        >
             <Input
                 width={"50%"}
                 placeholder="Search here"
-                _focus={{ border: "none", outline: "none" }}
-
+                variant={"outline"}
+                border={"1px solid black"}
+                paddingLeft={5}
             />
-            <Avatar _hover={{ bgColor: "black" }} />
+
+            <Button
+                color={"white"}
+                // color={"rgba(1,0,128,255)"}
+                bgColor={"rgba(253, 166, 0, 255)"}
+                boxShadow={"md"}
+                onClick={() => navigate("/create-event")}
+                _hover={{ bgColor: "rgba(253, 200, 0, 255)" }}
+            >
+                + Add Event
+            </Button>
+
+
+            <Avatar _hover={{ bgColor: "rgba(1,0,128,255)" }} />
         </Flex >
     )
 }

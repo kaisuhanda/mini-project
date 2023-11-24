@@ -1,54 +1,79 @@
-import { Flex, Box, Button, ButtonGroup, color } from "@chakra-ui/react";
+import "./style.css"
+import { Flex, Box, } from "@chakra-ui/react";
+import { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
+import { MdOutlineDashboard, MdOutlineSettings } from "react-icons/md";
 
 const SideNavbar = (props) => {
     return (
         <Box
             display={props.display}
-            style={{ position: "fixed", boxShadow: "0px 2px 5px grey", backgroundColor: "rgb(251, 251, 251)", height: "100vh", width: "250px" }}>
+            bgColor={"rgba(245, 245, 245,1)"}
+            position={"fixed"}
+            boxShadow={"0px 2px 3px grey"}
+            height={"100vh"}
+            width={"250px"}
+        >
             <Box w={250} h={20} textAlign={"center"} padding={8}>
                 logo disini
             </Box>
-            <Box display={"flex"} gap={1} flexDirection={"column"} marginTop={4}>
-                <Box
+            <Box display={"flex"} gap={2} flexDirection={"column"} marginTop={4}>
+                <Flex
+                    className="sidebar-button"
                     h={20}
+                    w={250}
                     padding={7}
                     fontWeight={500}
                     color={"black"}
-                    rounded={"md"}
+                    borderEndRadius={10}
                     boxShadow={"md"}
-                    onClick={props.onClick}
-                    _hover={{ bgColor: "rgb(231, 231, 231)", cursor: "pointer" }}
+                    onClick={props.dashboard}
+                    bgColor={"rgba(245, 245, 245,1)"}
+                    _hover={{ bgColor: "rgba(1,0,128,255)", cursor: "pointer", color: "white" }}
+                    gap={3}
+                    alignItems={"center"}
+                    fontSize={21}
                 >
-                    Dashboard
-                </Box>
-                <Box
+                    <MdOutlineDashboard size={28} /> Dashboard
+                </Flex>
+                <Flex
+                    className="sidebar-button"
                     h={20}
+                    w={250}
                     padding={7}
                     fontWeight={500}
                     color={"black"}
-                    rounded={"md"}
+                    borderEndRadius={10}
                     boxShadow={"md"}
-                    onClick={props.onClick}
-                    _hover={{ bgColor: "rgb(231, 231, 231)", cursor: "pointer" }}
+                    onClick={props.settings}
+                    bgColor={"rgba(245, 245, 245,1)"}
+                    _hover={{ bgColor: "rgba(1,0,128,255)", cursor: "pointer", color: "white" }}
+                    gap={3}
+                    alignItems={"center"}
+                    fontSize={21}
                 >
-                    Settings
-                </Box>
+                    <MdOutlineSettings size={28} /> Settings
+                </Flex>
             </Box>
             <Flex
-                padding={7}
-                justifyContent={"space-around"}
-                position={"absolute"}
-                bottom={0}
-                w={250}
+                className="sidebar-button"
                 h={20}
+                w={250}
+                padding={7}
                 fontWeight={500}
                 color={"black"}
-                borderTop={"1px solid black"}
-                onClick={props.onClick}
-                _hover={{ bgColor: "rgb(231, 231, 231)", cursor: "pointer" }}
+                borderEndRadius={10}
+                boxShadow={"-1px -0.1111111111px 7px 0.1px rgb(190, 190, 190)"}
+                onClick={props.mainMenu}
+                bgColor={"rgba(245, 245, 245,1)"}
+                _hover={{ bgColor: "rgba(1,0,128,255)", cursor: "pointer", color: "white" }}
+                gap={3}
+                alignItems={"center"}
+                fontSize={17}
+                position={"absolute"}
+                bottom={0}
             >
-                <BiArrowBack style={{ marginTop: "5px", }} /> Back to Main Menu
+                <BiArrowBack size={21} /> Back to Main Menu
             </Flex>
         </Box >
     )

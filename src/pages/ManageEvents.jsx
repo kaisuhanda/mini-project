@@ -15,12 +15,10 @@ const ManageEventPage = (props) => {
         }
     ]);
 
-
-
     return (
         <LayoutPage>
             <EventHeader />
-            <EventCard title="Touring Gan" category="trip" />
+            <EventCard title="Lorem ipsum dolor sit amet, consectetur cras amet." category="Photography & Videography" />
 
         </LayoutPage>
     )

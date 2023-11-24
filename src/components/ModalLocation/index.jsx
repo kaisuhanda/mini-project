@@ -16,16 +16,17 @@ import {
     ModalFooter,
     Button,
     FormControl,
+    FormHelperText,
 } from "@chakra-ui/react";
 import isOffline from "../../hooks/isOnline";
 
 
-const ModalLocation = () => {
+const ModalLocation = (props) => {
     const { isOnline, onButtonA, onButtonB } = isOffline();
-    console.log(isOnline);
+    // console.log(isOnline);
     return (
         <>
-            <Modal isOpen={true} >
+            <Modal isOpen={props.isOpen} onClose={props.onClose} size={"2xl"}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader fontSize={24} >
@@ -43,35 +44,55 @@ const ModalLocation = () => {
                                 <InputGroup display={"block"}>
                                     <Box marginBlock={5}>
                                         <FormLabel>
-                                            Place Name
-                                        </FormLabel>
-                                        <Input type="string" />
-                                    </Box>
-                                    <Box marginBlock={5}>
-                                        <FormLabel>
                                             Address
                                         </FormLabel>
-                                        <Input type="string" />
+                                        <Input
+                                            type="string"
+                                            onChange={props.address}
+                                            value={props.valueAddress}
+                                        />
                                     </Box>
                                     <Box marginBlock={5}>
                                         <FormLabel>
                                             City
                                         </FormLabel>
-                                        <Input type="string" />
+                                        <Input
+                                            type="string"
+                                            onChange={props.city}
+                                            value={props.valueCity}
+                                        />
                                     </Box>
                                 </InputGroup>
                             </ModalBody> :
                             <ModalBody>
-                                <Input placeholder="URL Livestream" type="url" />
+                                <FormControl padding={2} border={"1px solid black"} borderRadius={5} marginBottom={5}>
+                                    <FormLabel alignItems={"center"}>Link LiveStream</FormLabel>
+                                    <FormHelperText>
+                                        1. This Url will be received by the customer. Please make sure to set it correctly.
+                                    </FormHelperText>
+                                    <FormHelperText>
+                                        2. After setting the Url, you can't change it.
+                                    </FormHelperText>
+                                </FormControl >
+                                <Input
+                                    placeholder="URL Livestream"
+                                    type="url"
+                                    onChange={props.urlOnline}
+                                />
                             </ModalBody>
                     }
                     <ModalFooter>
-                        <Button bgColor={"rgb(50, 30, 201)"} color={"white"}>
+                        <Button
+                            bgColor={"rgb(50, 30, 201)"}
+                            color={"white"}
+                            _hover={{ bgColor: "rgb(32, 22, 105)" }}
+                            onClick={props.onClose}
+                        >
                             Save Location
                         </Button>
                     </ModalFooter>
                 </ModalContent>
-            </Modal>
+            </Modal >
         </>
     )
 };
