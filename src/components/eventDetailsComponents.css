@@ -126,8 +126,10 @@
     width: 100%;
 }
 .aTicket h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 700;
-    margin-top: 20px;
     font-size: 20px;
 }
 
@@ -194,4 +196,23 @@
     padding: 5px 10px;
     margin-right: 10px;
     border-radius: 20px;
+}
+.buyTicketTicket{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.buyTicketTicket button{
+    background-color: rgb(0, 89, 255);
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+    width: 100px;
+    border-radius: 5px;
+    height: fit-content
 }

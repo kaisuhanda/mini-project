@@ -20,8 +20,22 @@ body {
     font-size: 20px;
     font-weight: 400;
     padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
 }
-
+.showing p{
+    width: fit-content;
+}
+.sortby{
+    margin-right: 50px;
+}
+.sortby select{
+    border: 1px solid rgb(223, 223, 223);
+    padding-left: 3px;
+    padding-right: 10px;
+    width: 150px;
+    margin-left: 15px;
+}
 
 .eventPageTable tbody {
     font-weight: 300;

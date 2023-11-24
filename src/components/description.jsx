@@ -1,7 +1,15 @@
 import { useState } from "react";
 
-function Description() {
-    const [activeTab, setActiveTab] = useState("Description");
+function Description({ event, tickets }) {
+    const [activeTab, setActiveTab] = useState("Description")
+    const [total, setTotal] = useState(0)
+
+    const addTotal = async (price) => {
+        setTotal((prevTotal) => (
+            prevTotal += price
+        ))
+        console.log(total);
+    }
 
     return (
         <div className="description">
@@ -16,20 +24,40 @@ function Description() {
             <ul className={`descriptionContent ${activeTab === "Description" ? "activePage" : ""}`}>
                 {activeTab === "Description" && (
                     <li className="ulContent">
-                        This is the description for the event.
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates rem, asperiores officia ea totam cupiditate, sunt, ducimus possimus quo quod amet enim dolores dignissimos suscipit. Iste asperiores quos dolorum perferendis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, obcaecati dicta. Placeat, deserunt minima, numquam error ipsam reprehenderit dignissimos consequuntur nemo velit praesentium at quidem quisquam. Assumenda ipsam explicabo reprehenderit?
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur quaerat, totam quas ipsum amet tempore maiores excepturi voluptatibus eum eaque mollitia autem omnis dolorem reprehenderit ipsa est architecto repellat unde.
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, dolorem iusto ad delectus nemo maxime at doloremque eos possimus impedit, consectetur debitis molestiae nulla similique officia eligendi enim obcaecati voluptate?
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos hic officiis adipisci, itaque officia sit obcaecati, nam aliquid natus rerum culpa fugit architecto quia harum animi ut perspiciatis deleniti illo?
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse saepe ab, repellat animi temporibus magnam reprehenderit tenetur nobis soluta, consectetur doloremque. Corrupti omnis tempore est voluptatibus a nemo molestias quos?
-
+                        {event?.description}
                     </li>
                 )}
                 {activeTab === "Tickets" && (
                     <li className="ulContent">
                         <ul>
-                            <li className="aTicket">
+                            {tickets.map((ticket, index) => (
+                                <li key={index} className="aTicket">
+                                    <h2>{ticket.type}</h2>
+                                    <p>Tax and administration fee included</p>
+                                    <div className="until">
+                                        <i class="fa-solid fa-clock"></i>
+                                        Until {ticket.end_sales}
+                                    </div>
+                                    <div className="line"></div>
+                                    <div className="buyTicketTicket">
+                                        <h1>Rp. {ticket.price}</h1>
+                                        <button onClick={() => {addTotal(ticket.price)}}>
+                                            Add
+                                        </button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+                )}
+            </ul>
+        </div>
+    );
+}
+
+export default Description;
+
+{/* <li className="aTicket">
                                 <h2>Ticket 1</h2>
                                 <p>Tax and administration fee included</p>
                                 <div className="until">
@@ -58,13 +86,4 @@ function Description() {
                                 </div>
                                 <div className="line"></div>
                                 <h1>$$$$</h1>
-                            </li>
-                        </ul>
-                    </li>
-                )}
-            </ul>
-        </div>
-    );
-}
-
-export default Description;
+                            </li> */}

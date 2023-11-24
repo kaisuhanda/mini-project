@@ -5,6 +5,8 @@ import Categories from '../components/categories'
 import EventList from '../components/eventList'
 import CreatorsList from '../components/creatorsList'
 import Locations from '../components/locationsList'
+import EventSwipe from '../components/EventSwipe'
+import EventSwipeTime from '../components/EventSwipeTime'
 // import Layout from './layout'
 // import Banner from '../components/dashboard/banner'
 // import Categories from '../components/dashboard/categories'
@@ -15,12 +17,14 @@ import Locations from '../components/locationsList'
 function DashboardPage() {
     return (
         <Layout>
-             <Banner/>
-             <Categories />
-             <EventList/>
-             <CreatorsList/>
-             <Locations/>
-         </Layout>
+            <Banner />
+            <Categories />
+            <EventList />
+            <CreatorsList />
+            <EventSwipe />
+            <EventSwipeTime />
+            <Locations />
+        </Layout>
     )
 }
 

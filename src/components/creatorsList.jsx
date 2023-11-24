@@ -48,7 +48,7 @@ function CreatorsList(){
                             <h3>{creator.name}</h3>
                             <div className='followers'>{creator.followers} followers</div> 
                         </div>
-                        <button>Follow</button>
+                        <button>View</button>
                     </li>
                 ))}
             </ul>

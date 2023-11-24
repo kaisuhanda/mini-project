@@ -1,32 +1,32 @@
 import './eventDetailsComponents.css'
 
-function headingDetails() {
+function headingDetails({ event, city }) {
     return (
         <div className="headingDetails">
-            <h2>Title</h2>
+            <h2>{event?.name}</h2>
             <ul>
                 <li>
                     <div className="iContainer">
-                        <i class="fa-solid fa-calendar"></i>
+                        <i className="fa-solid fa-calendar"></i>
                     </div>
-                    date
+                    {(event?.start_date)}
                 </li>
                 <li>
                     <div className="iContainer">
-                        <i class="fa-solid fa-clock"></i>
+                        <i className="fa-solid fa-clock"></i>
                     </div>
-                    time
+                    {(event?.start_date)}
                 </li>
                 <li>
                     <div className="iContainer">
-                        <i class="fa-solid fa-location-dot"></i>
+                        <i className="fa-solid fa-location-dot"></i>
                     </div>
-                    location, city
+                    {event?.location}, {city}
                 </li>
             </ul>
             <div className="seperator"></div>
             <div className="eventPromoter">
-                made by <br /> promoter
+                made by <br /> {event?.promoter_id}
             </div>
         </div>
     )

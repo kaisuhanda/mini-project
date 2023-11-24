@@ -13,7 +13,7 @@ function EventCard({ event }) {
 
     return (
         <div className="eventCard">
-            <img src={event.img} />
+            <img src={event.image} />
             <div className="eventCardContent">
                 <p>{event.name}</p>
                 <p className="timeCaption">{event.time}</p>

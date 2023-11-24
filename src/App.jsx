@@ -11,7 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<DashboardPage />}/>
       <Route path="/events" element={<EventPage />}/>
-      <Route path="/event-details" element={<EventDetails />}/>
+      <Route path="/event-details/:event_id" element={<EventDetails />}/>
       <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
     </>

@@ -1,75 +1,38 @@
 import './dashboardComponents.css'
 import Music from '../assets/Music.webp'
-import Nightlife from '../assets/Nightlife.webp'
-import Performing from '../assets/Performing.webp'
-import Holidays from '../assets/Holidays.webp'
-import Health from '../assets/Health.webp'
-import Hobbies from '../assets/Hobbies.webp'
-import Business from '../assets/Business.webp'
-import Food from '../assets/F&B.webp'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
 function Categories() {
+    const [categoriesList, setCategoriesList] = useState([])
+    const navigate = useNavigate()
+
+    const fetchCategories = async () => {
+        let endpoint = 'http://localhost:2066/categories'
+        const response = await fetch(endpoint)
+        const data = await response.json()
+        setCategoriesList(data.slice(0, 8))
+    }
+
+    useEffect(() => {
+        fetchCategories()
+    }, [])
+
     return (
         <div className="eventCategories">
-                <ul>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Music})` }}>
+            <ul>
+                {categoriesList.map((category, index) => (
+                    <Link to={`events?category_id=${category.id}`}>
+                        <li key={index}>
+                            <div className="catContainer">
+                                <div className="catContainerImg" style={{ backgroundImage: `url(${Music})` }}></div>
                             </div>
-                            Music
-                        </div>
-                    </li>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Nightlife})` }}>
-                            </div>
-                            Nightlife
-                        </div>
-                    </li>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Performing})` }}>
-                            </div>
-                            Performing Arts
-                        </div>
-                    </li>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Holidays})` }}>
-                            </div>
-                            Vacations
-                        </div>
-                    </li>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Health})` }}>
-                            </div>
-                            Health
-                        </div>
-                    </li>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Hobbies})` }}>
-                            </div>
-                            Hobbies
-                        </div>
-                    </li>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Business})` }}>
-                            </div>
-                            Business
-                        </div>
-                    </li>
-                    <li>
-                        <div className="catContainer">
-                            <div className="catContainerImg" style={{ backgroundImage: `url(${Food})` }}>
-                            </div>
-                            Culinary
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                            {category.category}
+                        </li>
+                    </Link>
+                ))}
+            </ul>
+        </div >
     )
 }
 
