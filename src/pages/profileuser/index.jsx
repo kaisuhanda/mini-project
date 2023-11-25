@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {Box,Button,useMenuButton,
@@ -12,11 +12,16 @@ import './index.css'
 import  Profile  from "./profile";
 import { useState } from "react";
 import Orders from "./Orders";
-import Setting from "./Setting"
+import Setting from "./Setting";
+import { logout } from "../../redux/reducer/accountReducer";
 
 const ProfileUser = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [activeContent, setActiveContent] = useState("profile");
+    const token = localStorage.getItem("token");
+
+    
     
     const switchToProfile = () => {
       setActiveContent("profile");
@@ -27,6 +32,17 @@ const ProfileUser = () => {
     const switchToOrders = () => {
       setActiveContent("orders");
     };
+
+    useEffect(() => {
+      if (!token){
+        navigate('/');
+      }
+    }, []);
+
+    const handleLogout = () => {
+      dispatch(logout);
+      navigate("/");
+  };
     
 
     return <Box w={'102%'}>
@@ -53,7 +69,8 @@ const ProfileUser = () => {
                             <MenuItem onClick={switchToProfile}>Profile</MenuItem>
                             <MenuItem onClick={switchToSettings}>kata sandi</MenuItem>
                             <MenuItem onClick={switchToOrders}>Daftar pemesanan</MenuItem>
-                            <MenuItem onClick={() => navigate('/logout')}>Logout</MenuItem>
+                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            {/* <MenuItem onClick={() => navigate('/logout')}>Logout</MenuItem> */}
                         </MenuList>
                     </Menu>
               {/* <div className="akun3"> Buat Event</div> */}

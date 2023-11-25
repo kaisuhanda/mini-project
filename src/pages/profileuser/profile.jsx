@@ -98,8 +98,8 @@ const Profile = () => {
        <div className="bagian2b"></div>
        <div>
          <Card margin={"auto"}  paddingY={"4"} marginTop={'10'} w='90%' h={'120vh'} shadow={'xs'} >
-         <Card w={'25%'} h={'30%'} margin={'auto'} marginTop={10} textAlign={'center'} justifyContent={'center'} ><label htmlFor="profilePictureInput" style={{ cursor: "pointer" }}>
-         <Img boxSize='auto' src={image} />
+         <Card w={'25%'} h={'23%'} borderRadius={'10%'} margin={'auto'} marginTop={10} textAlign={'center'} justifyContent={'center'} ><label htmlFor="profilePictureInput" style={{ cursor: "pointer" }} >
+         <Img boxSize='auto' borderRadius={'10%'} src={image} />
         </label> </Card>
          <Card><Input
           type="file"

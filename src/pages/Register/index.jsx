@@ -25,6 +25,7 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [phone, setPhone] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleRegister = async () => {
     try {
@@ -63,14 +64,12 @@ const Register = () => {
       
     }
   };
-  
-  
-
-
-
 
       const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+    const togglePasswordVisibility1 = () => {
+      setShowConfirmPassword(!showConfirmPassword);
     };
 
     return (
@@ -114,7 +113,7 @@ const Register = () => {
                      {/* <Text textAlign={"left"} >konfirmasi Pasword</Text> */}
                  <InputGroup bg={'white'} marginTop={'5'} >
                          <Input
-                             type={showPassword ? "text" : "password"}
+                             type={showConfirmPassword ? "text" : "password"}
                              placeholder='Password Confirmation'
                              value={passwordConfirmation}
                              onChange={(e) => setPasswordConfirmation(e.target.value)}
@@ -123,8 +122,8 @@ const Register = () => {
                              <Button
                                    _hover={{bgColor:"transparent"}}
                                    bg={'transparent'}
-                                 onClick={togglePasswordVisibility}
-                                 leftIcon={showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                                 onClick={togglePasswordVisibility1}
+                                 leftIcon={showConfirmPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                              >
                              </Button>
                          </InputRightElement>

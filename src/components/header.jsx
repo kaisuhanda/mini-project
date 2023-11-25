@@ -65,9 +65,9 @@ function Header() {
           )}
         </div>
         <div className="loginSignup">
-          <div className="login">
-          <Link to={'/auth'}> Log In </Link>
-          </div>
+          
+          <Link to={'/auth'} className="login"> Log In 
+          </Link>
           <Link className="signup" onClick={onOpen}>
             Sign Up
           </Link>
