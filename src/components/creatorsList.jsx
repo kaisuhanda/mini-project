@@ -3,7 +3,7 @@ import profilePic from '../assets/user.png'
 import { current } from '@reduxjs/toolkit';
 import { useState, useRef } from 'react';
 
-function CreatorsList(){
+function CreatorsList() {
     const creatorsList = [
         { name: 'Erudite Training', eventsMade: ['Google Ads Consultation'], followers: 1000 },
         { name: 'Begin Group', eventsMade: ['Blockchain For Business'], followers: 1100 },
@@ -15,28 +15,28 @@ function CreatorsList(){
         { name: 'Better Help', eventsMade: ['Therapy For Troubled Teens'], followers: 500 },
     ];
 
-    const[position, setPosition] = useState(0)
+    const [position, setPosition] = useState(0)
     const ulRef = useRef(null)
 
     const handleSwipe = (e) => {
         ulElement = ulRef(current)
-        if(ulElement){
+        if (ulElement) {
             if (ulElement) {
                 const delta = event.deltaY || event.deltaX;
-          
+
                 if (delta !== 0) {
-                  ulElement.scrollLeft += delta;
-                  setScrollPosition(ulElement.scrollLeft);
+                    ulElement.scrollLeft += delta;
+                    setScrollPosition(ulElement.scrollLeft);
                 }
-              }
-            };
-        }
+            }
+        };
+    }
 
     return (
         <div className="creatorsList" onWheel={handleSwipe}>
             <h2>
-            <i class="fa-solid fa-user"></i>
-            Organizers to follow
+                <i className="fa-solid fa-user"></i>
+                Organizers to follow
             </h2>
             <ul on>
                 {creatorsList.map((creator, index) => (
@@ -46,7 +46,7 @@ function CreatorsList(){
                         </div>
                         <div className="profileContainer">
                             <h3>{creator.name}</h3>
-                            <div className='followers'>{creator.followers} followers</div> 
+                            <div className='followers'>{creator.followers} followers</div>
                         </div>
                         <button>View</button>
                     </li>

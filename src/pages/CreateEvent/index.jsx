@@ -38,7 +38,7 @@ const CreateEvent = () => {
         const printCategories = async () => {
             // console.log("testt");
             try {
-                const response = await API_CALL.get("/categories")
+                const response = await API_CALL.get("/categories/get-cat")
                 // console.log("RESPONSE", response);
                 setCategories(response.data.result);
                 // console.log(categories);
@@ -204,7 +204,7 @@ const CreateEvent = () => {
                             </FormLabel>
                             <Select
                                 placeholder="Select Category Event"
-                                onChange={(e) => { console.log("E", e.target), setDataInput({ ...dataInput, categories_id: e.target.value }) }
+                                onChange={(e) => { console.log("E", e.target), setDataInput({ ...dataInput, category_id: e.target.value }) }
                                 }>
 
                                 {categories.map((val, idx) => {

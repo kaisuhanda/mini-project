@@ -12,7 +12,7 @@ import { API_URL } from '../helper.js'
 
 
 dotenv.config();
-console.log(API_URL);
+// console.log(API_URL);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>

@@ -2,13 +2,13 @@ import EventHeader from "../components/EventHeader";
 import SideNavbar from "../components/Navbar/SideNavbar";
 import LayoutPage from "../components/LayoutEvent";
 import React, { useEffect, useState } from "react";
-import EventCardDashboard from "../components/EventCard";
+import EventCardDashboard from "../components/EventCard/index";
 import { API_CALL } from "../helper/helper";
 import { Flex } from "@chakra-ui/react";
 
 const ManageEventPage = (props) => {
     const [events, setEvents] = useState([])
-    // console.log("state events from API", events[0].name);
+    console.log("state events from API", events);
     useEffect(() => {
         const getEvents = async () => {
             try {

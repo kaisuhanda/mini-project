@@ -118,4 +118,4 @@ const EventCardDashboard = (props) => {
     )
 }
 
-export default EventCard;
+export default EventCardDashboard;
