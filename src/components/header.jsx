@@ -223,7 +223,7 @@ function Header() {
                 <Button>Profile Account {username}</Button>
               </PopoverTrigger>
 
-              <PopoverContent>
+              <PopoverContent >
                 <PopoverHeader>PROFIL</PopoverHeader>
                 <PopoverCloseButton />
                 <PopoverBody>
@@ -235,12 +235,16 @@ function Header() {
                 <PopoverFooter>
                   <Text>ISI DATA PROFIL :</Text> 
                   <Box > - Informasi Dasar </Box>
-                  <Button type="button" colorScheme="blue" onClick={handleLogout}>
+                  <Box marginTop={2}>
+                  <Button w={'100%'} type="button" colorScheme="blue" onClick={handleLogout}>
                     <Link to={"/dashboard"}>LOGOUT</Link>
                   </Button>
-                  <Button>
+                  </Box>
+                  <Box marginTop={2}>
+                  <Button w={'100%'}>
                     <Link to={'/ProfileUser'}> informasi user </Link>
                   </Button>
+                  </Box>
                 </PopoverFooter>
               </PopoverContent>
             </Popover>

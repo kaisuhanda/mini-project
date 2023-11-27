@@ -62,7 +62,8 @@ function App() {
       <Route path='/auth' element={<AuthPage />} />
       <Route path='/Register' element={<Register />} />
       <Route path='/RegisterPromotor' element={<RegisterPromotor />} />
-      <Route path='/TypeAccount/:total' element={<TypeAccount />} />
+      {/* <Route path='/TypeAccount/:cart/:total' element={<TypeAccount />} /> */}
+      <Route path='/TypeAccount/' element={<TypeAccount />} />
       <Route path='/ProfileUser' element={<ProfileUser />} />
       <Route path='/account/resetPassword/' element={<ResetPasswordPage />} />
       <Route path='/poto' element={<PotoProfile />} />

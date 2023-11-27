@@ -27,7 +27,7 @@ const RegisterPromotor = () => {
     try {
       const userData = {
                  username, password,email,
-                 role: "promotor",
+                 role: "promoter",
                  phone, confirmPassword: passwordConfirmation,
                };
       const response = await axios.post(`${API_URL}/account/register`, userData);

@@ -18,12 +18,6 @@ export const logout = () => {
   return { type: LOGOUT };
 };
 
-// const INITIAL_STATE = {
-//   username: "",
-//   password: "",
-//   token: " ",
-//   isAuthenticated: false,
-// };
 const INITIAL_STATE = {
   username: "",
   password: "",
@@ -68,7 +62,7 @@ export const login = (usernameOrEmail, password, navigate, setErrorMessage) => a
       // Update the navigation based on the user's role
       if (result.role === 'user') {
         navigate('/');
-      } else if (result.role === 'promotor') {
+      } else if (result.role === 'promoter') {
         navigate('/dashboard');
       } else {
         // Redirect other roles to the root page

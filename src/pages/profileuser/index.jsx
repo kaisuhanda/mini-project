@@ -12,10 +12,12 @@ import './index.css'
 import  Profile  from "./profile";
 import { useState } from "react";
 import Orders from "./Orders";
-import Setting from "./Setting"
+import Setting from "./Setting";
+import { logout } from "../../redux/reducer/accountReducer";
 
 const ProfileUser = () => {
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [activeContent, setActiveContent] = useState("profile");
     
     const switchToProfile = () => {
@@ -26,6 +28,11 @@ const ProfileUser = () => {
     };
     const switchToOrders = () => {
       setActiveContent("orders");
+    };
+
+    const handleLogout = () => {
+      dispatch(logout);
+      navigate('/');
     };
     
 
@@ -46,14 +53,14 @@ const ProfileUser = () => {
          <div className="first"> 
               <div className="akun1" >Tiket Saya</div> 
               <Menu >
-                        <MenuButton as={Button} className="akun2" colorScheme="orange">
+                        <MenuButton as={Button} className="akun2" colorScheme="white">
                             account
                         </MenuButton>
-                        <MenuList fontSize={20}>
+                        <MenuList fontSize={20} bg={"transparent"}>
                             <MenuItem onClick={switchToProfile}>Profile</MenuItem>
                             <MenuItem onClick={switchToSettings}>kata sandi</MenuItem>
                             <MenuItem onClick={switchToOrders}>Daftar pemesanan</MenuItem>
-                            <MenuItem onClick={() => navigate('/logout')}>Logout</MenuItem>
+                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </MenuList>
                     </Menu>
               {/* <div className="akun3"> Buat Event</div> */}
