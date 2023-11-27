@@ -53,6 +53,9 @@ function EventPage() {
 
     useEffect(() => {
         fetchEvents()
+        const page = SearchParams.get('page')
+        const newPage = page ? Number(page) : 1
+        setCurrentPage(newPage)
     }, [SearchParams])
 
     const toggleOnline = () => {
@@ -63,18 +66,20 @@ function EventPage() {
             if (newParams.get('isOnline') === 'false') {
                 newParams.delete('isOnline');
             }
-            return newParams; 
+            newParams.set('page', 1)
+            return newParams;
         })
     }
-    
+
     const toggleFree = () => {
         setSearchParams((prevSearchParams) => {
             const currentFree = prevSearchParams.get('isFree')
             const newParams = new URLSearchParams(prevSearchParams)
             newParams.set('isFree', currentFree === 'true' ? 'false' : 'true')
-            if(newParams.get('isFree') === 'false') {
+            if (newParams.get('isFree') === 'false') {
                 newParams.delete('isFree')
             }
+            newParams.set('page', 1)
             return Object.fromEntries(newParams)
         })
     }
@@ -90,21 +95,23 @@ function EventPage() {
                 newParams.set('category_id', selectedCategory)
                 console.log('successfully set');
             }
+            newParams.set('page', 1)
             return { ...Object.fromEntries(newParams) }
         })
         console.log('afterSearchParams : ', SearchParams);
     }
-    
+
     const handleCity = (selectedCity) => {
         setSearchParams((prevSearchParams) => {
             const currentCity = prevSearchParams.get('city_id')
             const newParams = new URLSearchParams(prevSearchParams)
-            if(String(currentCity) === String(selectedCity)) {
+            if (String(currentCity) === String(selectedCity)) {
                 newParams.delete('city_id')
             } else {
                 newParams.set('city_id', selectedCity)
             }
-            return { ...Object.fromEntries(newParams)}
+            newParams.set('page', 1)
+            return { ...Object.fromEntries(newParams) }
         })
     }
 
@@ -112,13 +119,14 @@ function EventPage() {
         setSearchParams((prevSearchParams) => {
             const currentTime = SearchParams.get('time')
             const newParams = new URLSearchParams(prevSearchParams)
-            if(currentTime === selectedTime){
+            if (currentTime === selectedTime) {
                 newParams.delete('time')
             } else {
                 newParams.set('time', selectedTime)
                 console.log('test');
             }
-            return { ...Object.fromEntries(newParams)}
+            newParams.set('page', 1)
+            return { ...Object.fromEntries(newParams) }
         })
     }
 
@@ -132,38 +140,78 @@ function EventPage() {
                 newParams.delete('sortBy')
                 newParams.set('sortBy', 'default');
             }
+            newParams.set('page', 1)
             return Object.fromEntries(newParams)
         })
     }
-    
 
     const resetFilters = () => {
-        setSearchParams(() => new URLSearchParams())
+        setSearchParams((prevSearchParams) => {
+            const newParams = new URLSearchParams(prevSearchParams);
+            newParams.delete('category_id');
+            newParams.delete('city_id');
+            newParams.delete('time');
+            newParams.delete('sortBy');
+            newParams.delete('isOnline');
+            newParams.delete('isFree');
+            return newParams;
+        })
     }
 
-    const [currentPage, setCurrentPage] = useState(1)
+
+    const [currentPage, setCurrentPage] = useState(Number(SearchParams.get('page')) || 1);
     const startIndex = (currentPage - 1) * 6
     const totalPages = Math.ceil(eventsList.length / 6)
     const remainingEvents = eventsList.length - (currentPage - 1) * 6
     const endIndex = currentPage === totalPages ? startIndex + remainingEvents : startIndex + 6
     const displayedEvents = eventsList.slice(startIndex, endIndex)
 
+
+    const changeCurrentPage = (page) => {
+        setCurrentPage(page)
+        setSearchParams((prevSearchParams) => {
+            const newParams = new URLSearchParams(prevSearchParams)
+            newParams.set('page', page.toString())
+            return newParams
+        })
+    }
+
     const nextPage = () => {
         if (endIndex < eventsList.length) {
-            setCurrentPage(currentPage + 1)
+            changeCurrentPage(currentPage + 1)
         }
     }
 
     const prevPage = () => {
         if (startIndex > 0) {
-            setCurrentPage(currentPage - 1)
+            changeCurrentPage(currentPage - 1)
         }
     }
 
-    const row = []
-    for (let i = 0; i < displayedEvents.length; i += 3) {
-        row.push(displayedEvents.slice(i, i + 3))
+    const row = [];
+    let columnsPerRow = 3;
+
+    if (window.innerWidth <= 1024) {
+        columnsPerRow = 2;
     }
+
+    for (let i = 0; i < displayedEvents.length; i += columnsPerRow) {
+        row.push(displayedEvents.slice(i, i + columnsPerRow));
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            const newColumnsPerRow = window.innerWidth <= 1024 ? 2 : 3;
+            if (newColumnsPerRow !== columnsPerRow) {
+                setColumnsPerRow(newColumnsPerRow);
+            }
+        };
+    
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [columnsPerRow]);
 
     console.log(SearchParams.get('category_id') ? 'category is on' : 'category turned off');
 
@@ -181,50 +229,63 @@ function EventPage() {
                     resetFilters={resetFilters}
                 />
                 <div className='contentContainer'>
-                    <table className='eventPageTable'>
-                        <div className="showing">
-                            <p>Showing {startIndex + 1}-{endIndex} out of {eventsList.length} events</p>
-                            <div className="sortby">
-                                sort by:
-                                <select name="sort" placeholder='sort by' onChange={(e) => handleSortBy(e.target.value)}>
-                                    <option value="default">default</option>
-                                    <option value="nearest-time">nearest time</option>
-                                    <option value="furthest-time">furthest time</option>
-                                    <option value="price-asc">lowest price</option>
-                                    <option value="price-desc">highest price</option>
-                                </select>
-                            </div>
-                        </div>
-                        <tbody>
-                            {row.map((displayedEvents, index) => (
-                                <tr key={index}>
-                                    {displayedEvents.map((event, index) => (
-                                        <td key={index}>
-                                            <Link to={`/event-details/${event.id}`}>
-                                            <div className="whiteContainer">
-                                                <img src={event.image} />
-                                                <div className="tdContainer">
-                                                    <p>{event.name}</p>
-                                                    <p className="timeCaption">{(event.start_date).slice(0,10)}</p>
-                                                    <p className="locationCaption">{event.location}, {(event.start_date).slice(11,16)}</p>
-                                                    <p className="creatorCaption">
-                                                        Starts from Rp. {event?.tickets.sort((a, b) => a.start_from - b.start_from)[0].start_from}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            </Link>
-                                        </td>
+                    {eventsList.length > 0 ? (
+                        <div>
+                            <table className='eventPageTable'>
+                                <div className="showing">
+                                    <p>Showing {startIndex + 1}-{endIndex} out of {eventsList.length} events</p>
+                                    <div className="sortby">
+                                        sort by:
+                                        <select name="sort" placeholder='sort by' onChange={(e) => handleSortBy(e.target.value)}>
+                                            <option value="default">default</option>
+                                            <option value="nearest-time">nearest time</option>
+                                            <option value="furthest-time">furthest time</option>
+                                            <option value="price-asc">lowest price</option>
+                                            <option value="price-desc">highest price</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <tbody>
+                                    {row.map((displayedEvents, index) => (
+                                        <tr key={index}>
+                                            {displayedEvents.map((event, index) => (
+                                                <td key={index}>
+                                                    <Link to={`/event-details/${event.id}`}>
+                                                        <div className="whiteContainer">
+                                                            <img src={event.image} />
+                                                            <div className="tdContainer">
+                                                                <p>{event.name}</p>
+                                                                <p className="timeCaption">{(event.start_date).slice(0, 10)}</p>
+                                                                <p className="locationCaption">{event.location}, {(event.start_date).slice(11, 16)}</p>
+                                                                <p className="creatorCaption">
+                                                                    {event?.tickets.sort((a, b) => a.start_from - b.start_from)[0].start_from === 0 ?
+                                                                        'Free' : `Starts from ${event?.tickets.sort((a, b) => a.start_from - b.start_from)[0].start_from}`}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </Link>
+                                                </td>
+                                            ))}
+                                        </tr>
                                     ))}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <div className='onetwo'>
-                        <ul>
-                            <li onClick={prevPage}>&lt;</li>
-                            <li onClick={nextPage}>&gt;</li>
-                        </ul>
-                    </div>
+                                </tbody>
+                            </table>
+                            {eventsList.length < 7 ? (
+                                <div></div>
+                            ) : (
+                                <div className='onetwo'>
+                                    <ul>
+                                        <li onClick={prevPage}>&lt;</li>
+                                        <li onClick={nextPage}>&gt;</li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <div className='noEventsFoundEvent'>
+                            <p>Sorry, no events available :/</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </Layout>
