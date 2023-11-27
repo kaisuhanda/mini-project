@@ -2,6 +2,8 @@
 .header {
     display: flex;
     border-bottom: 1px solid rgb(202, 207, 212);
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
 .logo {
@@ -18,7 +20,7 @@
     color: orange;
 }
 
-.header ul {
+.navUl {
     padding: 30px 0;
     list-style: none;
     display: flex;
@@ -47,11 +49,12 @@
     border-color: orange;
 }
 
-.inputWrapper {
+.inputContainer {
     width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .loginSignup {
@@ -98,32 +101,102 @@
     background-color: rgb(224, 146, 1);
 }
 
-
-.inputWrapper {
-    position: relative;
-}
-
 .dropdownSearch {
     display: flex;
-    width: 200px;
+    width: 300px;
     flex-direction: column;
     position: absolute;
-    top: 100%;
+    top: 110%;
     left: 0;
     z-index: 1;
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 10px 0;
     border: 1px solid #ccc;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-left: 50px;
 }
 
 .dropdownSearchItem {
     padding: 8px;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
 
+.dropdownSearchItem img {
+    height: 30px;
+    width: 50px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+    font-size: 30px;
+    height: 85px;
+    padding-right: 20px;
+}
+
+.pushToTheRight {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.navUlBurger {
+    position: fixed;
+    z-index: 3;
+    background-color: orange;
+    display: none; 
+    transform: translateX(-100%); 
+    transition: 0.5s;
+    list-style: none;
+    color: white;
+}
+
+.navUlBurger.open {
+    transform: translateX(0); 
+}
+
+@media (max-width: 1024px) {
+    .header ul {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+        align-self: flex-end;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navUlBurger.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        width: 200px;
+        z-index: 3;
+        border-radius: 10px;
+        padding: 30px 0;
+    }
+
+    .navUlBurger.open li {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .navUlBurger.open li:hover{
+        color: gray;
+    }
+
+    .pushToTheRight {
+        margin-right: 20px;
+    }
+}
 
 /*BANNER*/
 .banner {
@@ -168,15 +241,21 @@
 .eventCategories ul {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     padding: 0;
     margin: 0;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 40px;
     padding: 30px 60px;
 }
-.eventCategories li{
-    width: 120px;
+
+.eventCategories li {
+    flex: 0 0 calc(25% - 20px);
     text-align: center;
+    margin-bottom: 60px;
+    width: 120px;
 }
+
 
 .catContainer {
     text-align: center;
@@ -209,7 +288,21 @@
     opacity: 1;
 }
 
+.catContainerImg,
+.eventCategories li {
+    height: 120px;
+}
 
+@media (max-width: 1024px) {
+    .eventCategories ul {
+        align-items: center;
+        gap: 80px;
+    }
+
+    .eventCategories li {
+        margin-bottom: 10px;
+    }
+}
 
 /*POPULAR CATEGORIES*/
 .mainPopular {
@@ -329,128 +422,6 @@
     margin-left: 4px;
     background-color: transparent;
 }
-
-/* .eventsIn {
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.eventsTable {
-    width: 100%;
-    border-collapse: separate;
-    margin-top: 50px;
-    display: flex;
-    list-style: none;
-}
-.eventsTable tbody {
-    font-weight: 300;
-    font-size: 20px;
-    width: 100%;
-}
-
-.eventsIn i {
-    margin-right: 20px;
-}
-
-.eventsIn {
-    font-size: 25px;
-}
-
-.eventsTable li {
-    width: 250px;
-    font-weight: 600;
-    border: 0;
-    border-top: 20px solid transparent;
-    border-right: 40px solid transparent;
-    border-bottom: 40px solid transparent;
-}
-
-.whiteContainer:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-.whiteContainer {
-    background-color: white;
-    transition: .5s;
-    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.02), 5px 0 5px rgba(0, 0, 0, 0.02);
-}
-
-.tdContainer {
-    padding: 10px;
-}
-
-.eventsTable tbody td img {
-    width: 100%;
-    height: 150px;
-    border-bottom: 1px solid rgb(223, 223, 223);
-}
-
-.locationCaption {
-    color: gray;
-    font-size: 15px;
-    font-weight: 400;
-    margin: 5px 0;
-}
-
-.timeCaption {
-    color: orange;
-    font-size: 17px;
-    font-weight: 400;
-    margin: 5px 0;
-}
-
-.creatorCaption {
-    font-size: 15px;
-    font-weight: 400;
-    margin: 5px 0;
-    font-weight: 400;
-}
-
-.iContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-}
-
-.creatorContainer {
-    display: flex;
-}
-
-.creatorContainer p {
-    margin-left: 5px;
-} */
-
-/* .onetwo {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.onetwo ul {
-    width: fit-content;
-    display: flex;
-    list-style: none;
-    margin: 10px 0;
-}
-
-.onetwo ul li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: navy;
-    color: white;
-    font-weight: 500;
-    margin-left: 7px;
-    border-radius: 4px;
-    padding: 3px 15px;
-    transition: .5s;
-}
-
-.onetwo ul li:hover {
-    background-color: rgb(0, 0, 76);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-} */
 
 
 /*CREATORSLIST*/
@@ -583,29 +554,7 @@
 
 .locationsList ul li img:hover {
     transform: scale(1.1);
-    /* Zoom in the image by 10% */
 }
-
-/* .locations{
-    padding: 30px 100px;
-    overflow: hidden;
-}
-.locations h2{
-    font-size: 25px;
-    font-weight: 600;
-}
-.locations li img{
-    width: 300px;
-    height: 200px;
-}
-.locations li{
-    width: fit-content;
-    height: 200px;
-}
-.locations ul{
-    display: flex;
-    list-style: none;
-} */
 
 /*FOOTER*/
 .footer {
@@ -635,6 +584,7 @@
 
 .rightDiv {
     width: 100%;
+    margin-top: 20px;
 }
 
 .content {
@@ -684,4 +634,26 @@
     justify-content: center;
     align-items: center;
     width: 20px;
+}
+
+@media (max-width: 1024px) {
+    .footer{
+        flex-direction: column;
+    }
+    .leftDiv ul {
+        width: 100%;
+    }
+
+    .rightDiv {
+        margin-top: 60px;
+    }
+}
+
+.noEventsFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    height: 100px;
+    width: fit-content;
 }

@@ -11,6 +11,7 @@ function Header() {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const fetchEvents = async () => {
     let endpoint = 'http://localhost:2066/events';
@@ -32,17 +33,27 @@ function Header() {
     setFilteredEvents(filtered);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    const navUlBurger = document.querySelector('.navUlBurger');
+    if (navUlBurger) {
+      navUlBurger.classList.toggle('open', isMenuOpen);
+    }
+  }
+
+
+
   return (
     <div className='header'>
       <div className="logo">Ticket<span>Wave</span></div>
-      <ul>
+      <ul className='navUl'>
         <li>
-          <Link to='/'>
+          <Link to='/' onClick={toggleMenu}>
             Home
           </Link>
         </li>
         <li>
-          <Link to='/events'>
+          <Link to='/events' onClick={toggleMenu}>
             Find Events
           </Link>
         </li>
@@ -52,15 +63,36 @@ function Header() {
           </Link>
         </li>
       </ul>
+
+
+      <ul className='navUlBurger'>
+        <li>
+          <Link to='/' onClick={toggleMenu}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to='/events' onClick={toggleMenu}>
+            Find Events
+          </Link>
+        </li>
+        <li>
+          Create Events
+        </li>
+      </ul>
+
       <div className="pushToTheRight">
-        <div className="inputWrapper">
+        <div className="inputContainer">
           <input type="text" placeholder='Search...' value={searchInput} onChange={handleSearchInput} />
           {searchInput && (
             <ul className='dropdownSearch'>
               {filteredEvents.map((event) => (
-                <li key={event.id} className="dropdownSearchItem">
-                  {event.name}
-                </li>
+                <Link to={`event-details/${event.id}`} onClick={toggleMenu}>
+                  <li key={event.id} className="dropdownSearchItem">
+                    {event.name}
+                    <img src={event.image} alt="" />
+                  </li>
+                </Link>
               ))}
               {filteredEvents.length === 0 && (
                 <li className="dropdownSearchItem">Not found</li>
@@ -77,23 +109,26 @@ function Header() {
           </Link>
         </div>
       </div>
-      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6} >
-            <Button width={"45%"} h={"100"} type="button" margin={"auto"} border={'1px solid red'} marginRight={5} _hover={{ bg: 'red.500', transition: 'ease-in-out 0.6s', color: 'white' }}>
-              <Box marginRight={'2'} > <BsFillFileEarmarkPersonFill /> </Box>
-              <Link to={"/Register"}>Pengguna</Link>
-            </Button>
-            <Button width={"45%"} h={"100"} type="button" margin={"auto"} border={'1px solid blue'} marginLeft={5} _hover={{ bg: 'blue.500', transition: 'ease-in-out 0.6s', color: 'white' }} >
-              <Box marginRight={'2'}> <BsCalendar3 /> </Box>
-              <Link to={"/RegisterPromotor"}>Promotor</Link>
-            </Button>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+//       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+//         <ModalOverlay />
+//         <ModalContent>
+//           <ModalHeader>Create your account</ModalHeader>
+//           <ModalCloseButton />
+//           <ModalBody pb={6} >
+//             <Button width={"45%"} h={"100"} type="button" margin={"auto"} border={'1px solid red'} marginRight={5} _hover={{ bg: 'red.500', transition: 'ease-in-out 0.6s', color: 'white' }}>
+//               <Box marginRight={'2'} > <BsFillFileEarmarkPersonFill /> </Box>
+//               <Link to={"/Register"}>Pengguna</Link>
+//             </Button>
+//             <Button width={"45%"} h={"100"} type="button" margin={"auto"} border={'1px solid blue'} marginLeft={5} _hover={{ bg: 'blue.500', transition: 'ease-in-out 0.6s', color: 'white' }} >
+//               <Box marginRight={'2'}> <BsCalendar3 /> </Box>
+//               <Link to={"/RegisterPromotor"}>Promotor</Link>
+//             </Button>
+//           </ModalBody>
+//         </ModalContent>
+//       </Modal>
+      <div className="burger" onClick={toggleMenu}>
+        <i class="fa-solid fa-bars"></i>
+      </div>
     </div>
   );
 }
