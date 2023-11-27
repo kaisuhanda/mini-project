@@ -153,12 +153,15 @@
     margin-top: 10px;
     border-top: 1px solid rgb(185, 185, 185); 
     background-color: rgb(185, 185, 185);
-    margin: 0 20px;
+    margin: 20px 20px 0 20px;
 }
 .total{
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
+}
+.total p{
+    width: 200px;
 }
 .buttonContainer{
     justify-content: center;
@@ -177,6 +180,10 @@
     padding: 5px 0;
     width: 200px;
     border-radius: 5px;
+    transition: .5s;
+}
+.buyTicket:hover{
+    background-color: rgb(0, 74, 210);
 }
 .checkoutContainer{
     border-radius: 10px;
@@ -215,4 +222,75 @@
     width: 100px;
     border-radius: 5px;
     height: fit-content
+}
+.increment{
+    display: flex;
+    justify-content: space-evenly;
+    width: 80px;
+}
+.increment button{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cartTickets{
+    list-style: none;
+}
+.cartTickets li{
+    width: 360px;
+}
+.flexbox{
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+.flexbox span{
+    margin-left: 100px;
+}
+.flexboxTop{
+    display: flex;
+}
+.flexboxTop span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.total h1{
+    width: fit-content;
+}
+.div{
+    display: flex;
+    /* margin-bottom: 20px; */
+}
+
+@media (max-width: 1024px) {
+    .heading img{
+        width: 100%;
+        margin-top: 20px;
+    }
+    .headingDetails{
+        margin-top: 70px;
+        width: 100%;
+    }
+    .lowerHalf{
+        flex-direction: column;
+        width: 100%;
+    }
+    .description{
+        width: 100%;
+        margin-bottom: 70px;
+    }
+    .ticket{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 60px;
+    }
+
 }
