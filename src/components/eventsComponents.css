@@ -1,0 +1,92 @@
+.sidebar{
+    padding: 0 50px;
+    width: fit-content;
+    font-size: 20px;
+    width: 300px;
+    border-right: 1px solid rgb(193, 193, 193);
+}
+.filter{
+    font-weight: 700;
+    font-size: 25px;
+    padding: 20px 0 20px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.filter button{
+    color: orange;
+}
+.locationContainer, .categoryContainer, .priceContainer{
+    padding: 30px 0;
+}
+.sidebar ul li{
+    list-style: none;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+.sidebar ul li.active{
+    color: orange;
+}
+.border{
+    height: 1px;
+    background-color: rgb(193, 193, 193);
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+}
+.switchContainer{
+    margin-left: 72px;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: gray;
+    transition: 0.5s;
+    border-radius: 15px; 
+}
+.switch input {
+    display: none;
+}
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 21px;
+    width: 22px; 
+    left: 5px;
+    bottom: 5px;
+    background-color: white;
+    transition: 0.4s; 
+    border-radius: 15px; 
+}
+
+input:checked + .slider {
+    background-color: orange;
+}
+
+input:checked + .slider::before {
+    transform: translateX(18px);
+}
+.aCategory{
+    display: flex;
+    justify-content: space-between;
+}
+.categoriesList.visible, .citiesList.visible, .timeList.visible{
+    font-size: 18px;
+    display: block;
+}
+.citiesList.visible li.active, .categoriesList.visible li.active{
+    color: orange;
+}
+.categoriesList, .citiesList, .timeList{
+    display: none;
+}
+.dropdown.disabled {
+    pointer-events: none;
+    opacity: 0.5; 
+}
