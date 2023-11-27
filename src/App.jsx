@@ -11,10 +11,11 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-// import DashboardPageLogin from './pages/dasboardLogin'
+
+import DashboardPageLogin from './pages/dasboardLogin'
 import ProfileUser from './pages/profileuser';
 import ResetPasswordPage from './pages/resetPassword'
-// import DashboardPagePromotor from './pages/dashboardPromotor'
+import DashboardPagePromotor from './pages/dashboardPromotor'
 import PotoProfile from './pages/profileuser/potoProfile'
 import DashboardPage from "./pages/dashboard"
 import EventPage from "./pages/event"
@@ -46,6 +47,7 @@ function App() {
   }, [dispatch]);
 
 
+
   return (
 
     <Routes>
@@ -54,6 +56,8 @@ function App() {
       <Route path='/Register' element={<Register />} />
       <Route path='/RegisterPromotor' element={<RegisterPromotor />} />
       <Route path='/TypeAccount' element={<TypeAccount />} />
+      {/* <Route path='/TypeAccount/:cart/:total' element={<TypeAccount />} /> */}
+      <Route path='/TypeAccount/' element={<TypeAccount />} />
       <Route path='/ProfileUser' element={<ProfileUser />} />
       <Route path='/account/resetPassword/' element={<ResetPasswordPage />} />
       <Route path='/poto' element={<PotoProfile />} />
@@ -62,11 +66,10 @@ function App() {
       <Route path="/" element={<DashboardPage />} />
       <Route path="/events" element={<EventPage />} />
       <Route path="/event-details/:event_id" element={<EventDetails />} />
-
-      {/* bagian e khalid */}
       <Route path='/dashboard' element={<ManageEventPage />} />
       <Route path="/create-event" element={<CreateEvent />} />
       <Route path='/update-event' element={<UpdateEvent />} />
+
       {/* umum */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
