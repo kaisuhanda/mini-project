@@ -479,9 +479,7 @@
     padding: 20px 0;
 }
 
-.creatorsList ul::-webkit-scrollbar {
-    /* display: none; */
-}
+
 
 .creatorsList ul li {
     width: 200px;
