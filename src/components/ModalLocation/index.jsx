@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import { isOpen, onToggleOpen, onToggleClose } from ("../../hooks/useToggle");
 import {
     Box,
@@ -17,13 +17,30 @@ import {
     Button,
     FormControl,
     FormHelperText,
+    Select,
 } from "@chakra-ui/react";
 import isOffline from "../../hooks/isOnline";
+import { API_CALL } from "../../helper/helper.js";
 
 
 const ModalLocation = (props) => {
     const { isOnline, onButtonA, onButtonB } = isOffline();
-    // console.log(isOnline);
+    const [cities, setCities] = useState([]);
+
+    useEffect(() => {
+        const printCities = async () => {
+            try {
+                const response = await API_CALL.get("/cities")
+
+                setCities(response.data)
+            } catch (error) {
+                console.log("ERROR PRINT CITIES", error);
+            }
+        }
+
+        printCities();
+    }, [])
+
     return (
         <>
             <Modal isOpen={props.isOpen} onClose={props.onClose} size={"2xl"}>
@@ -56,11 +73,19 @@ const ModalLocation = (props) => {
                                         <FormLabel>
                                             City
                                         </FormLabel>
-                                        <Input
-                                            type="string"
+                                        <Select
+                                            placeholder="Select Category Event"
                                             onChange={props.city}
                                             value={props.valueCity}
-                                        />
+                                        >
+
+                                            {cities.map((val, idx) => {
+                                                return (
+                                                    <option key={idx} value={val.id}> {val.city} </option>
+                                                )
+                                            })}
+
+                                        </Select>
                                     </Box>
                                 </InputGroup>
                             </ModalBody> :

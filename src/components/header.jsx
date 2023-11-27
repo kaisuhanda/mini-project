@@ -46,7 +46,11 @@ function Header() {
             Find Events
           </Link>
         </li>
-        <li>Create Events</li>
+        <li>
+          <Link to="/dashboard">
+            Create Events
+          </Link>
+        </li>
       </ul>
       <div className="pushToTheRight">
         <div className="inputWrapper">

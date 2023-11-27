@@ -95,14 +95,7 @@ const ModalTicket = (props) => {
                     </FormControl>
                 </ModalBody>
                 <ModalFooter>
-                    <Button
-                        bgColor={"rgb(50, 30, 201)"}
-                        color={"white"}
-                        _hover={{ bgColor: "rgb(235, 235, 235)", color: "black" }}
-                        onClick={props.onClose}
-                    >
-                        Create
-                    </Button>
+                    {props.buttonCreate}
                 </ModalFooter>
             </ModalContent>
         </Modal >

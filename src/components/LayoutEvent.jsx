@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 const LayoutPage = (props) => {
     const navigate = useNavigate();
 
-    return <Flex width={"full"}>
+    return <Flex minWidth={"100vw"} minH={"100vh"}>
         <SideNavbar display={{ base: "none", md: "block" }} mainMenu={() => navigate("/")} />
-        <Box padding={{ base: "4" }} maxWidth={"full"} flex={1}>
+        <Box padding={{ base: "4" }} maxWidth={"full"} minH={"100vh"}>
             {props.children}
         </Box>
     </Flex>
