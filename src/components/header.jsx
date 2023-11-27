@@ -78,7 +78,7 @@ function Header() {
           {searchInput && (
             <ul className='dropdownSearch'>
               {filteredEvents.map((event) => (
-                <Link to={`event-details/${event.id}`} onClick={toggleMenu}>
+                <Link to={`/event-details/${event.id}`} onClick={toggleMenu}>
                   <li key={event.id} className="dropdownSearchItem">
                     {event.name}
                     <img src={event.image} alt="" />

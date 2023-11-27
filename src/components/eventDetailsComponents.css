@@ -294,3 +294,29 @@
     }
 
 }
+
+@media (max-width: 430px) {
+    .eventDetails{
+        margin: 0;
+        padding: 0;
+    }
+    .lowerHalf{
+        padding: 20px;
+    }
+    .ticket{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 60px;
+    }
+    .heading{
+        padding: 20px;
+    }
+    .description{
+        width: 100%;
+    }
+    .ticket{
+        display: flex;
+        flex-direction: column;
+    }
+}
