@@ -1,0 +1,38 @@
+.page {
+  /* background-color: yellow; */
+  width: 100vw;
+  height: 100vh;
+  padding-inline: 300px;
+  padding-block: 50px;
+  margin-bottom: 250px;
+}
+
+.main-event {
+  /* background-color: salmon; */
+  /* border: 1px solid grey; */
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.main-event input,
+.main-event button,
+.main-event textarea,
+.main-event select {
+  box-shadow: 2px 2px 2px 0.4px rgb(227, 227, 227);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.main-event input :focus {
+  outline: none;
+}
+
+.page-title {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.page-description {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
