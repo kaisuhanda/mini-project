@@ -95,6 +95,7 @@ function Description({ event, tickets, total, setTotal, cart, setCart }) {
                                         ) : (
                                           <h1>Free</h1>
                                         )}
+                                        <h1>Rp. {ticket.price}</h1>
                                         <div className="increment">
                                             <button onClick={() => subtractTotal(ticket)}>-</button>
                                             <span>{amount[ticket.id]}</span>
@@ -111,76 +112,7 @@ function Description({ event, tickets, total, setTotal, cart, setCart }) {
     );
 }
 
+
 export default Description;
 
 
-// import { useState } from "react";
-
-// function Description({ event, tickets, setTotal }) {
-//     const [activeTab, setActiveTab] = useState("Description")
-//     const [amount, setAmount] = useState(0)
-
-//     const end_date = event?.end_date || '';
-//     const date = end_date.slice(0, 10);
-
-//     const addTotal = async (price) => {
-//         console.log('added');
-//         setAmount((prevAmount) => prevAmount + 1)
-//         setTotal((prevTotal) => prevTotal + price * (amount + 1))
-//         console.log(total);
-//     }
-    
-//     const subtractTotal = async (price) => {
-//         console.log('subtracted');
-//         setAmount((prevAmount) => prevAmount - 1)
-//         setTotal((prevTotal) => prevTotal - price * (amount - 1))
-//         console.log(total);
-//     }
-    
-//     return (
-//         <div className="description">
-//             <ul className="descriptionHeader">
-//                 <li className={activeTab === "Description" ? "activeTab" : ""} onClick={() => setActiveTab("Description")}>
-//                     Description
-//                 </li>
-//                 <li className={activeTab === "Tickets" ? "activeTab" : ""} onClick={() => setActiveTab("Tickets")}>
-//                     Tickets
-//                 </li>
-//             </ul>
-//             <ul className={`descriptionContent ${activeTab === "Description" ? "activePage" : ""}`}>
-//                 {activeTab === "Description" && (
-//                     <li className="ulContent">
-//                         {event?.description}
-//                     </li>
-//                 )}
-//                 {activeTab === "Tickets" && (
-//                     <li className="ulContent">
-//                         <ul>
-//                             {tickets.map((ticket, index) => (
-//                                 <li key={index} className="aTicket">
-//                                     <h2>{ticket.type}</h2>
-//                                     <p>Tax and administration fee included</p>
-//                                     <div className="until">
-//                                         <i class="fa-solid fa-clock"></i>
-//                                         Until {date}
-//                                     </div>
-//                                     <div className="line"></div>
-//                                     <div className="buyTicketTicket">
-//                                         <h1>Rp. {ticket.price}</h1>
-//                                         <div className="increment">
-//                                             <button onClick={subtractTotal}>-</button>
-//                                             <span>{amount}</span>
-//                                             <button onClick={addTotal}>+</button>
-//                                         </div>
-//                                     </div>
-//                                 </li>
-//                             ))}
-//                         </ul>
-//                     </li>
-//                 )}
-//             </ul>
-//         </div>
-//     );
-// }
-
-// export default Description;

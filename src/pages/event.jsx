@@ -100,7 +100,6 @@ function EventPage() {
         })
         console.log('afterSearchParams : ', SearchParams);
     }
-
     const handleCity = (selectedCity) => {
         setSearchParams((prevSearchParams) => {
             const currentCity = prevSearchParams.get('city_id')
