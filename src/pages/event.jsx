@@ -7,6 +7,7 @@ import { useSearchParams, useNavigate, Link } from 'react-router-dom'
 function EventPage() {
     const [eventsList, setEventsList] = useState([])
     const [SearchParams, setSearchParams] = useSearchParams()
+    const [showSidebar, setShowSidebar] = useState(false)
 
     const fetchEvents = async () => {
         try {
@@ -200,12 +201,12 @@ function EventPage() {
 
     useEffect(() => {
         const handleResize = () => {
-            const newColumnsPerRow = window.innerWidth <= 1024 ? 2 : 3;
+            const newColumnsPerRow = window.innerWidth <= 1024 ? 2 : 4;
             if (newColumnsPerRow !== columnsPerRow) {
                 setColumnsPerRow(newColumnsPerRow);
             }
         };
-    
+
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -215,6 +216,11 @@ function EventPage() {
     console.log(SearchParams.get('category_id') ? 'category is on' : 'category turned off');
 
     console.log(SearchParams.get('sortBy') ? 'sortby is on' : 'sort by is off');
+
+    const toggleSidebar = () => {
+        setShowSidebar((prev) => !prev)
+        console.log('p');
+    };
 
     return (
         <Layout>
@@ -226,11 +232,15 @@ function EventPage() {
                     handleCity={handleCity}
                     handleTime={handleTime}
                     resetFilters={resetFilters}
+                    showSidebar={showSidebar}
                 />
                 <div className='contentContainer'>
                     {eventsList.length > 0 ? (
                         <div>
                             <table className='eventPageTable'>
+                                <div className="showFilter" onClick={toggleSidebar}>
+                                    <i class="fa-solid fa-filter"></i>
+                                </div>
                                 <div className="showing">
                                     <p>Showing {startIndex + 1}-{endIndex} out of {eventsList.length} events</p>
                                     <div className="sortby">

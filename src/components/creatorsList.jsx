@@ -38,7 +38,7 @@ function CreatorsList() {
                 <i className="fa-solid fa-user"></i>
                 Organizers to follow
             </h2>
-            <ul on>
+            <ul>
                 {creatorsList.map((creator, index) => (
                     <li key={index}>
                         <div className="profilePicContainer">
