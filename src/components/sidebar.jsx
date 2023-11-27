@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './eventsComponents.css'
 
-function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleTime, resetFilters }) {
+function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleTime, resetFilters, showSidebar }) {
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -96,7 +96,7 @@ function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleT
     }
 
     return (
-        <div className="sidebar">
+        <div className={`sidebar ${showSidebar ? 'visible' : ''}`}>
             <div className="filter">
                 Filter
                 <button className='reset' onClick={resetFilters}>
