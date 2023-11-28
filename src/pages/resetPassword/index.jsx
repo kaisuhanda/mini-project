@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import jwt from 'jsonwebtoken';
 import { useEffect } from "react";
 
+
 const ResetPasswordPage = () => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -64,35 +65,27 @@ const ResetPasswordPage = () => {
 
   
 
-  return ( <Box >
-    <Box w={'50rem'} h={'500'} marginTop={100} marginLeft={400} boxShadow={'dark-lg'} borderRadius={10}>
-      <Text fontSize={24} marginLeft={'40%'}>Reset Kata Sandi</Text>
+  return ( <Box>
+    <Box w={'90%'} h={'500'} margin={'auto'} boxShadow={'dark-lg'} borderRadius={10}>
+      <Text fontSize={24} margin={'10px auto 10px 50% '}>Reset Kata Sandi</Text>
       <Box>
-        <Text marginLeft={10} marginBottom={3}>Kata Sandi Baru:</Text>
+        <Text>Kata Sandi Baru:</Text>
         <Input
-         marginBottom={5}
-         marginLeft={10}
-         w={'90%'}
           type="password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
       </Box>
       <Box>
-        <Text marginLeft={10} marginBottom={3}>Konfirmasi Kata Sandi:</Text>
+        <Text>Konfirmasi Kata Sandi:</Text>
         <Input
-         marginBottom={5}
-         marginLeft={10}
-         w={'90%'}
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </Box>
-      <Box marginLeft={300} marginBottom={5}>
       {errorMessage && <Text color="red">{errorMessage}</Text>}
-      </Box>
-      <Button onClick={handleResetPassword} marginLeft={300}>Reset Kata Sandi</Button>
+      <Button onClick={handleResetPassword}>Reset Kata Sandi</Button>
     </Box>
     </Box>
   );

@@ -74,7 +74,7 @@ const Profile = () => {
   })
   .catch(error => {
     // Handle any errors that occur in either request
-    console.error('Error changing profile:', error.message);
+    console.error('Error changing profile:', error);
     setErrorMessage('An error occurred while changing information');
   });
   

@@ -90,6 +90,11 @@ function Description({ event, tickets, total, setTotal, cart, setCart }) {
                                     </div>
                                     <div className="line"></div>
                                     <div className="buyTicketTicket">
+                                        {ticket.price > 0 ? (
+                                          <h1>Rp. {ticket.price}</h1>
+                                        ) : (
+                                          <h1>Free</h1>
+                                        )}
                                         <h1>Rp. {ticket.price}</h1>
                                         <div className="increment">
                                             <button onClick={() => subtractTotal(ticket)}>-</button>
@@ -107,4 +112,7 @@ function Description({ event, tickets, total, setTotal, cart, setCart }) {
     );
 }
 
+
 export default Description;
+
+

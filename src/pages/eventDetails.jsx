@@ -71,7 +71,7 @@ function EventDetails() {
                 </div>
                 <div className="lowerHalf">
                     <Description event={event} tickets={tickets} total={total} setTotal={setTotal} cart={cart} setCart={setCart}/>
-                    <Ticket total={total} cart={cart} event_id={event_id}/>
+                    <Ticket total={total} cart={cart}/>
                 </div>
             </div>
         </Layout>

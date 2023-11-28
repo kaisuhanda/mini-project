@@ -14,9 +14,9 @@ const SideNavbar = (props) => {
             height={"100vh"}
             width={"250px"}
         >
-            <Box w={250} h={20} textAlign={"center"} padding={8}>
-                logo disini
-            </Box>
+            <Flex w={250} h={20} justifyContent={"center"}>
+                <div className="logo" style={{ padding: "0px" }}>Ticket<span>Wave</span></div>
+            </Flex>
             <Box display={"flex"} gap={2} flexDirection={"column"} marginTop={4}>
                 <Flex
                     className="sidebar-button"

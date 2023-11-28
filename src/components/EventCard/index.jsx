@@ -1,6 +1,16 @@
-import { Flex, Box, Button, ButtonGroup, color, Image, Text } from "@chakra-ui/react";
+import {
+    Flex,
+    Box,
+    Button,
+    ButtonGroup,
+    Image,
+    Text,
+} from "@chakra-ui/react";
 
 const EventCardDashboard = (props) => {
+
+
+
     return (
         <Flex
             position={"relative"}
@@ -16,17 +26,21 @@ const EventCardDashboard = (props) => {
             marginBottom={4}
         >
             <Image
+                onClick={props.onClick}
                 bgColor={"rgba(220, 220, 220, 0.4)"}
                 alt="image here"
                 width={220}
                 borderStartRadius={10}
+                _hover={{ cursor: "pointer" }}
             />
+
             <Flex
+                onClick={props.onClick}
                 flexDirection={"column"}
                 gap={4}
+                _hover={{ cursor: "pointer" }}
             >
                 <Text
-
                     height={"fit-content"}
                     width={"fit-content"}
                     fontSize={21}
@@ -42,6 +56,12 @@ const EventCardDashboard = (props) => {
                 >
                     {props.category}
                 </Text>
+                <Button
+                    bgColor={"yellow"}
+                    color={"black"}
+                >
+                    {props.ticketName}
+                </Button>
             </Flex>
             <Flex
                 flexDirection={"column"}
@@ -94,6 +114,7 @@ const EventCardDashboard = (props) => {
                     color={"white"}
                     bgColor={"rgba(253, 166, 0, 255)"}
                     _hover={{ bgColor: "rgba(253, 200, 0, 255)" }}
+                    onClick={props.edit}
                 >
                     Edit
                 </Button>
@@ -102,6 +123,7 @@ const EventCardDashboard = (props) => {
                     color={"white"}
                     bgColor={"rgba(253, 166, 0, 255)"}
                     _hover={{ bgColor: "rgba(253, 200, 0, 255)" }}
+                    onClick={props.delete}
                 >
                     Delete
                 </Button>
@@ -110,6 +132,7 @@ const EventCardDashboard = (props) => {
                     color={"white"}
                     bgColor={"rgba(253, 166, 0, 255)"}
                     _hover={{ bgColor: "rgba(253, 200, 0, 255)" }}
+                    onClick={props.newTicket}
                 >
                     Add Ticket
                 </Button>

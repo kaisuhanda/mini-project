@@ -10,16 +10,16 @@ import {
     Textarea
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import useToggle from "../../hooks/useToggle";
-import ModalTicket from "../../components/ModalTicket";
+import useToggle from "../../hooks/useToggle.js";
+import ModalTicket from "../../components/ModalTicket.jsx";
 import "./index.css"
-import ModalLocation from "../../components/ModalLocation";
-import FooterCreate from "../../components/FooterCreateEvent";
+import ModalLocation from "../../components/ModalLocation/index.jsx";
+import FooterCreate from "../../components/FooterCreateEvent/index.jsx";
 import { API_CALL } from "../../helper/helper.js";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const CreateEvent = () => {
+const UpdateEvent = () => {
     const [dataInput, setDataInput] = useState({});
     const [categories, setCategories] = useState([]);
     const [images, setImages] = useState([]);
@@ -79,7 +79,7 @@ const CreateEvent = () => {
         for (const prop in temp) {
             formData.append(`${prop}`, temp[prop])
         }
-        console.log("formDAaTA", formData);
+
         try {
 
             const result = await API_CALL.post(
@@ -97,21 +97,12 @@ const CreateEvent = () => {
         <>
             <ModalTicket
                 isOpen={isOpen}
+                onClose={onToggleClose}
                 type={(e) => setDataInput({ ...dataInput, type: e.target.value })}
                 price={(e) => setDataInput({ ...dataInput, price: e.target.value })}
                 amount={(e) => setDataInput({ ...dataInput, stock: e.target.value })}
                 start_sales={(e) => setDataInput({ ...dataInput, start_sales: e.target.value })}
                 end_sales={(e) => setDataInput({ ...dataInput, end_sales: e.target.value })}
-                buttonCreate={
-                    <Button
-                        bgColor={"rgb(50, 30, 201)"}
-                        color={"white"}
-                        _hover={{ bgColor: "rgb(235, 235, 235)", color: "black" }}
-                        onClick={onToggleClose}
-                    >
-                        Create
-                    </Button>
-                }
             />
 
             <ModalLocation
@@ -134,8 +125,10 @@ const CreateEvent = () => {
 
 
             <Box className="page">
-                <Text className="page-title"> Create Your Event </Text>
-                <Text className="page-description"> This is where you create your event. Make it as attractive as you can. </Text>
+                <Text className="page-title"> Update Your Event </Text>
+                <Text className="page-description">
+                    You can update your event here. Please make sure that you change your event properly.
+                </Text>
 
                 <Box className="main-event">
                     <FormControl isRequired className="event-name"> {/* event name*/}
@@ -224,24 +217,35 @@ const CreateEvent = () => {
                         </FormControl>
                     </Box>
                     <Box>
-                        <Button
+                        {/* <Button
                             onClick={onToggleOpen}
                             bgColor={"rgb(50, 30, 201)"}
                             color={"white"}
                             _hover={{ bgColor: "rgb(32, 22, 105)" }}
                         >
                             Create Ticket
-                        </Button>
+                        </Button> */}
                     </Box>
                 </Box >
 
             </Box>
             <FooterCreate
-                event="Create Event"
+                cancel={
+                    <Button
+                        position={"absolute"}
+                        right={"230px"}
+                        top={3}
+                        bgColor={"rgb(194, 0, 13)"}
+                        color={"white"}
+                        onClick={() => navigate("/dashboard")}
+                    >
+                        Cancel
+                    </Button>}
                 onClick={onCreate}
+                event="Update Event"
             />
         </>
     )
 }
 
-export default CreateEvent;
+export default UpdateEvent;

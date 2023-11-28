@@ -69,7 +69,7 @@ body {
   } */
 
   .first{
-    width: 93rem;
+    width: auto;
     height: 13vh;
     border: 1px solid rgb(205, 205, 200);
     padding: 4vh 4vh;
@@ -87,7 +87,7 @@ body {
     float: right;
     color: rgba(0, 0, 0, 0.724);
     border: 1px solid gray;
-    border-radius:10px ;
+    border-radius:20px ;
     cursor: pointer;
   }
   .first .akun3 {
@@ -102,11 +102,11 @@ body {
     background-color: #35367262;
   }
   .first div:hover {
-    background-color: transparent;
+    background-color :transparent;
     color: black;
   }
   .first .akun2:hover {
-    background-color:  #f7e7038e;;
+    background-color: #f7e7038e;
     color: black;
   }
   .second{

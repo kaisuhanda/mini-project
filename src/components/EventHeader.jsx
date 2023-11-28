@@ -6,12 +6,14 @@ const EventHeader = (props) => {
 
     return (
         <Flex
+            // bgColor={"green"}
             position={"absolute"}
             margin={{ base: "20px", md: "20px 20px 0px 280px", xl: "20px 20px 0px 280px" }}
             width={{ base: "450px", md: "75%" }}
             boxShadow={"md"}
             padding={5}
             justifyContent={"space-between"}
+        // minH={"100vh"}
         >
             <Input
                 width={"50%"}
@@ -23,7 +25,6 @@ const EventHeader = (props) => {
 
             <Button
                 color={"white"}
-                // color={"rgba(1,0,128,255)"}
                 bgColor={"rgba(253, 166, 0, 255)"}
                 boxShadow={"md"}
                 onClick={() => navigate("/create-event")}

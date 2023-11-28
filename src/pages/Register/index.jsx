@@ -10,16 +10,6 @@ import { API_URL } from "../../../helper";
 import backgroundjpg from "../../pages/images/photo1.jpg"
 import { Image } from '@chakra-ui/react'
 import photo10 from "../../pages/images/photo12.jpg"
-import React from "react";
-import {
-  AlertDialog,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogCloseButton,
-  AlertDialogBody,
-  AlertDialogFooter,
-} from "@chakra-ui/react";
 
 
 const Register = () => {
@@ -35,7 +25,6 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [phone, setPhone] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [successMessage, setSuccessMessage] = React.useState("");
 
   const handleRegister = async () => {
     try {
@@ -49,14 +38,12 @@ const Register = () => {
                };
       const response = await axios.post(`${API_URL}/account/register`, userData);
   
-      const { success, message,referralCode } = response.data;
+      const { success, message } = response.data;
   
       if (success) {
         // Registrasi berhasil, lakukan sesuatu seperti redirect atau menampilkan pesan sukses
-        setSuccessMessage(`Registrasi sukses! Referral Code: ${referralCode}`);
-        onOpen();
-        //alert("Registrasi sukses!")
-        //navigate('/')
+        alert("Registrasi sukses!")
+        navigate('/')
       } else {
         // Registrasi gagal, tampilkan pesan error dari backend
         setErrorMessage(message);
@@ -91,21 +78,6 @@ const Register = () => {
            {/* <Box w={"auto"} bg={"transparant"} h={"10vh"}  display={"flex"} justifyContent={"center"} alignItems={"center"}>
               <Box bg={"white"} w={"10%"} h={"50%"} display={"flex"} textAlign={"center"} justifyContent={"center"} color={"orange.500"} fontSize={"2xl"} fontFamily={'fantasy'}> TicketWave </Box>
       </Box> */}
-      <AlertDialog isOpen={isOpen} onClose={onClose} isCentered>
-          <AlertDialogOverlay />
-          <AlertDialogContent>
-            <AlertDialogHeader>Registration Success</AlertDialogHeader>
-            <AlertDialogCloseButton />
-            <AlertDialogBody>{successMessage}</AlertDialogBody>
-            <AlertDialogFooter>
-              <Link to="/">
-                <Button colorScheme="teal" ml={3} onClick={onClose}>
-                  Back to Home
-                </Button>
-              </Link>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
       <Box display={"Flex"} flexDirection={"row"} h={"100vh"} w={"auto"}>
       <Box display={{base:"none" , md :"flex"}} bg={"white.100"} w={"50%"}   justifyContent={"center"} alignItems={"center"} >
           <Image  src={backgroundjpg}  w={"80%"}/>
@@ -165,7 +137,7 @@ const Register = () => {
              </CardBody>
               </Card>
               <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
-      {/* //<ModalOverlay /> */}
+      <ModalOverlay />
     </Modal>  
           </Box>
       </Box>
@@ -177,4 +149,78 @@ const Register = () => {
 
 export default Register;
 
+
+
+
+
+
+{/* <Box bgImage={photo10} >
+    <Box w={"auto"} bg={"transparent"} h={"10vh"}  display={"flex"} justifyContent={"center"} alignItems={"center"}>
+       <Box bg={"transparent"} w={"10%"} h={"50%"} display={"flex"} textAlign={"center"} justifyContent={"center"} color={"orange.500"} fontSize={"2xl"} fontFamily={'fantasy'}> TicketWave </Box>
+</Box>
+<Box display={"Flex"} flexDirection={"row"} h={"85vh"} w={"auto"} bg={"transparent"}>
+
+<Box margin={"auto"} paddingY={"3"} bg={"gray.50"}  borderRadius="100"  display={"flex"} justifyContent={"center"} alignItems={"center"} width={{ base: "100%", sm: "100%", md: "50%" }}>
+       <Card maxW={"md"} margin={"auto"}  paddingY={"4"} shadow={"dark-lg"} w='100%'>
+       <CardBody textAlign={"center"} >
+         <Text textAlign={"center"} fontWeight={700} fontSize={"2xl"}>Welcome</Text>
+         <Text textAlign={"center"} >Selamat datang di Register</Text>
+         <Text textAlign={"left"} >Username</Text>
+         <Input type="text" placeholder='input your username' value={username} onChange={(e) => setUsername(e.target.value)} />
+         <Text textAlign={"left"} >Email</Text>
+         <Input type="text" placeholder='input your email' value={email} onChange={(e) => setEmail(e.target.value)} />
+         <Text textAlign={"left"}>Nomor Telepon</Text>
+         <Input type="text" placeholder="Input your phone number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+         <Text textAlign={"left"} >Pasword</Text>
+         <InputGroup>
+                 <Input
+                     type={showPassword ? "text" : "password"}
+                     placeholder='Input your password'
+                     value={password}
+                     onChange={(e) => setPassword(e.target.value)}
+                 />
+                 <InputRightElement width="3rem">
+                     <Button
+                           _hover={{bgColor:"transparent"}}
+                           bg={'transparent'}
+                         onClick={togglePasswordVisibility}
+                         leftIcon={showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                     >
+                     </Button>
+                 </InputRightElement>
+             </InputGroup>
+             <Text textAlign={"left"} >konfirmasi Pasword</Text>
+         <InputGroup>
+                 <Input
+                     type={showPassword ? "text" : "password"}
+                     placeholder='Input your password again'
+                     value={passwordConfirmation}
+                     onChange={(e) => setPasswordConfirmation(e.target.value)}
+                 />
+                 <InputRightElement width="3rem">
+                     <Button
+                          _hover={{bgColor:"transparent"}}
+                          bg={'transparent'}
+                         onClick={togglePasswordVisibility}
+                         leftIcon={showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                     >
+                     </Button>
+                 </InputRightElement>
+             </InputGroup>
+         
+             <Text textAlign={"left"} >ID referral code (option) </Text>
+         <Input type="text" placeholder='input your referral code ' />
+         {errorMessage && <Text color="red">{errorMessage}</Text>}
+         <Button type="button" w={'50%'} marginTop={"8"} colorScheme="#00080" onClick={handleRegister}>
+             daftar
+         </Button>
+     </CardBody>
+       </Card>
+       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+<ModalOverlay />
+</Modal>  
+   </Box>
+</Box>
+                 <Box bg={"transparent"} w={"auto"} h={"5vh"}>  </Box>
+</Box> */}
     

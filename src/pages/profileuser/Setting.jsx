@@ -98,7 +98,7 @@ const Setting = () => {
   };
   
     return (
-      <Box w={'100%'}>
+      <div>
           <div className="bagian1">
           <div className="bagian1a">
               <div className="bagian1b">Password User</div>
@@ -190,7 +190,7 @@ const Setting = () => {
        </CardBody>
          </Card>
            </div>
-      </Box>
+      </div>
     );
   }
 

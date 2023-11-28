@@ -9,7 +9,7 @@ const FooterCreate = (props) => {
     return (
         <Flex
             height={16}
-            width={"100%"}
+            width={"100vw"}
             position={"fixed"}
             bottom={0}
             bgColor={"rgb(27, 24, 77)"}
@@ -20,9 +20,13 @@ const FooterCreate = (props) => {
                 right={20}
                 top={3}
                 onClick={props.onClick}
+                color={"white"}
+                bgColor={"rgba(253, 166, 0, 255)"}
             >
-                Create Event
+                {props.event}
             </Button>
+
+            {props.cancel}
         </Flex>
     )
 }
