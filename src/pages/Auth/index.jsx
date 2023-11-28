@@ -36,8 +36,8 @@ const AuthPage = () => {
   
         if (userRole === "user") {
           navigate("/dashboard");
-        } else if (userRole === "promotor") {
-          navigate("/dashboardPromotor");
+        } else if (userRole === "promoter") {
+          navigate("/dashboardPromoter");
         } else {
           navigate("/auth");
         }

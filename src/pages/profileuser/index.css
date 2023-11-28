@@ -102,7 +102,7 @@ body {
     background-color: #35367262;
   }
   .first div:hover {
-    background-color: #f7e7038e;
+    background-color :transparent;
     color: black;
   }
   .first .akun2:hover {

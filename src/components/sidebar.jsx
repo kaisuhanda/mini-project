@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './eventsComponents.css'
 
-function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleTime, resetFilters }) {
+function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleTime, resetFilters, showSidebar }) {
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -72,7 +72,7 @@ function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleT
         });
         console.log('test online');
     };
-    
+
     const handleToggleFree = () => {
         setIsFree(!isFree)
         toggleFree()
@@ -95,8 +95,12 @@ function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleT
         console.log('test', time);
     }
 
+    const sidebarStyle = {
+        height: window.innerWidth <= 1024 ? '800px' : 'auto'
+    }
+
     return (
-        <div className="sidebar">
+        <div className={`sidebar ${showSidebar ? 'visible' : ''}`} style={sidebarStyle}>
             <div className="filter">
                 Filter
                 <button className='reset' onClick={resetFilters}>
