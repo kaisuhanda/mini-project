@@ -1,6 +1,9 @@
 import './eventDetailsComponents.css'
+import { Link } from 'react-router-dom'
 
-function Ticket({ total, cart }) {
+function Ticket({ total, cart, event_id }) {
+
+
     return (
         <div className="ticket">
             <div className="checkoutContainer">
@@ -37,7 +40,9 @@ function Ticket({ total, cart }) {
                     <span><h1>Rp. {Number(total)}</h1></span>
                 </div>
                 <div className="buttonContainer">
-                    <button className="buyTicket">Buy Ticket</button>
+                    <button className="buyTicket"> 
+                    {/* <Link  to={`/TypeAccount/${cart}/${total}`}> Buy Ticket </Link> */}
+                    <Link to={`/TypeAccount?cart=${JSON.stringify(cart)}&total=${total}`}> Buy Ticket </Link></button>
                 </div>
             </div>
             <div className="share">
