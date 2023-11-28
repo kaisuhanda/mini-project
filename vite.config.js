@@ -6,7 +6,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 // https://vitejs.dev/config/
 export default defineConfig({
   //plugins: [react()],
-  plugins: [react(),nodePolyfills()],
+  plugins: [react(), nodePolyfills()],
   server: {
     watch: {
       usePolling: true

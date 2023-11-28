@@ -1,14 +1,16 @@
-import { Box, Button, Card, CardBody, Text ,Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay,} from "@chakra-ui/react"
+import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
-import { Input, InputGroup, InputRightElement,useDisclosure } from '@chakra-ui/react'
-import { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { Box,Text, Button, Flex, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverHeader, PopoverTrigger, Portal } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/reducer/accountReducer";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { keepLogin } from "../../redux/reducer/accountReducer";
+import { loginSuccess } from "../../redux/reducer/accountReducer";
 import { API_URL } from "../../../helper";
-import backgroundjpg from "../../pages/images/photo1.jpg"
-import { Image } from '@chakra-ui/react'
+import PotoProfile from "../profileuser/potoProfile";
 
 
 const RegisterPromotor = () => {
@@ -24,40 +26,42 @@ const RegisterPromotor = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleRegister = async () => {
-    try {
-      const userData = {
-                 username, password,email,
-                 role: "promotor",
-                 phone, confirmPassword: passwordConfirmation,
-               };
-      const response = await axios.post(`${API_URL}/account/register`, userData);
-      const { success, message } = response.data;
-      if (success) {
-        // Registrasi berhasil, lakukan sesuatu seperti redirect atau menampilkan pesan sukses
-        alert("Registrasi sukses!")
-        navigate('/')
-      } else {
-        // Registrasi gagal, tampilkan pesan error dari backend
-        setErrorMessage(message);
-        navigate('/RegisterPromotor')
-      }
-    } catch (error) {
-      navigate('/RegisterPromotor')
-      // Jika respons dari backend memiliki pesan kesalahan
-      if (error.response && error.response.data && error.response.data.message) {
-        console.log("Server error message:", error.response.data.message)
-        setErrorMessage(error.response.data.message);
-      } else {
-        // Jika tidak, tampilkan pesan umum
-        setErrorMessage("An error occurred during registration.");
-      }
-      
-    }
-  };
-      const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
+
+const DashboardPagePromotor = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+  // Menggunakan useSelector untuk mengambil data dari Redux state
+   const token = useSelector((state) => state.auth.token);
+   const username = useSelector((state) => state.auth.username);
+   const role = useSelector((state) => state.auth.role);
+   const email = useSelector((state) => state.auth.email);
+   const phone = useSelector((state) => state.auth.phone);
+  
+
+
+
+   //untuk memangil keep login
+   useEffect(() => {
+   // Panggil fungsi keepLogin di sini
+   dispatch(keepLogin())
+        .then((userData) => {
+   // Perbarui state Redux dengan data pengguna dari keepLogin
+    dispatch(loginSuccess(userData));
+   })
+   .catch((error) => {
+   console.error('Error during keepLogin:', error);   
+   });
+   }, [dispatch]); 
+
+
+
+
+    const handleLogout = () => {
+        dispatch(logout);
+        navigate("/");
     };
+
     const togglePasswordVisibility1 = () => {
       setShowConfirmPassword(!showConfirmPassword);
     };
@@ -134,4 +138,44 @@ const RegisterPromotor = () => {
   );
 }
 
-export default RegisterPromotor;
+ 
+
+    return <Box>
+        <Flex>
+        </Flex>
+        <Flex>
+        {/* <img src={image} alt="Profile" style={{ width: '100px', height: '100px', borderRadius: '50%' }} /> */}
+        <PotoProfile />
+      </Flex>
+        <Popover>
+  <PopoverTrigger>
+    <Button>Profile Account Promotor</Button>
+  </PopoverTrigger>
+  <Portal>
+    <PopoverContent>
+      <PopoverArrow />
+      <PopoverHeader>PROFIL</PopoverHeader>
+      <PopoverCloseButton />
+      <PopoverBody>
+      <Button type="button" colorScheme="blue" onClick={handleLogout}>
+                <Link to={"/"}>LOGOUT</Link>
+            </Button>
+            <Text>{username}</Text>
+            <Text>{role}</Text>
+      </PopoverBody>
+      <PopoverFooter>
+        ISI DATA PROFIL : 
+        <Text> - Informasi Dasar </Text>
+        <Text> - Kata Sandi </Text>
+        <Text> - Histroy pembelian </Text>
+      
+      </PopoverFooter>
+    </PopoverContent>
+  </Portal>
+</Popover>
+
+</Box>
+};
+
+
+export default DashboardPagePromotor;

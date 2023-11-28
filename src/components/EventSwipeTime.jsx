@@ -53,13 +53,14 @@ function EventSwipeTime() {
             <div className="views">
                 Events
                 <select name="location" id="location" placeholder="find a city" onChange={(e) => handleTime(e.target.value)}>
+                    <option value="this-week">this week</option>
                     <option value="today">today</option>
                     <option value="tomorrow">tomorrow</option>
-                    <option value="this-week">this week</option>
                     <option value="this-month">this month</option>
                 </select>
             </div>
-            <ul className="eventCardList">
+            {eventsList.length > 0 ? (
+                <ul className="eventCardList">
                 {eventsList.map((event, index) => (
                     <Link to={`event-details/${event.id}`}>
                         <li key={index}>
@@ -68,6 +69,11 @@ function EventSwipeTime() {
                     </Link>
                 ))}
             </ul>
+            ) : (
+                <div className='noEventsFound'>
+                    <p>Sorry, no events available {time}</p>
+                </div>
+            )}
         </div>
     );
 }

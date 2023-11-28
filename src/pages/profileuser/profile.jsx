@@ -11,7 +11,6 @@ import axios from "axios";
 import { API_URL } from "../../../helper";
 
 
-
 const Profile = () => {
   const [newUsername, setNewUsername] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -74,7 +73,7 @@ const Profile = () => {
   })
   .catch(error => {
     // Handle any errors that occur in either request
-    console.error('Error changing profile:', error);
+    console.error('Error changing profile:', error.message);
     setErrorMessage('An error occurred while changing information');
   });
   

@@ -1,13 +1,14 @@
 import './dashboardComponents.css';
 import { useState, useRef, useEffect } from 'react';
 import EventCard from './eventCard';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 function EventSwipe() {
     const [eventsList, setEventsList] = useState([]);
     const [citiesList, setCitiesList] = useState([]);
     const [city_id, setCity_id] = useState(1);
     const [position, setPosition] = useState(0);
+    const [searchParams, setSearchParams] = useSearchParams()
     const ulRef = useRef(null);
 
     const fetchEvents = async () => {
@@ -32,10 +33,10 @@ function EventSwipe() {
 
     const fetchCities = async () => {
         try {
-            let endpoint = 'http://localhost:2066/cities';
-            const response = await fetch(endpoint);
-            const data = await response.json();
-            setCitiesList(data);
+            let endpoint = 'http://localhost:2066/cities'
+            const response = await fetch(endpoint)
+            const data = await response.json()
+            setCitiesList(data)
         } catch (error) {
             console.log(error);
         }
@@ -44,7 +45,7 @@ function EventSwipe() {
     useEffect(() => {
         fetchEvents();
         fetchCities();
-    }, [city_id]);
+    }, [city_id])
 
     const handleSwipe = (event) => {
         ulElement = ulRef.current;
@@ -74,7 +75,8 @@ function EventSwipe() {
                     ))}
                 </select>
             </div>
-            <ul className="eventCardList">
+            {eventsList.length > 0 ? (
+                <ul className="eventCardList">
                 {eventsList.map((event, index) => (
                     <Link to={`event-details/${event.id}`}>
                         <li key={index}>
@@ -83,6 +85,11 @@ function EventSwipe() {
                     </Link>
                 ))}
             </ul>
+            ) : (
+                <div className='noEventsFound'>
+                    <p>Sorry, no events available in {citiesList[city_id - 1]?.city}</p>
+                </div>
+            )}
         </div>
     );
 }

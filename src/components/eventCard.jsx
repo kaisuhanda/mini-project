@@ -17,7 +17,7 @@ function EventCard({ event }) {
             <div className="eventCardContent">
                 <p>{event.name}</p>
                 <p className="timeCaption">{event.time}</p>
-                <p className="locationCaption">{event.location}, <br /> {event.price}</p>
+                <p className="locationCaption">{event.location}</p>
                 <p className="creatorCaption">
                     event.promoterid
                     <div className="eventCardCreator">

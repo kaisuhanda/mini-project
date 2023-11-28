@@ -9,62 +9,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import {  Card, CardBody, InputGroup, InputRightElement, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from "@chakra-ui/react";
 
 
-// const ResetPasswordPage = () => {
-// //   const { resetToken } = useParams();
-// // const urlParams = new URLSearchParams(window.location.search);
-// //   const { resetToken } = urlParams.get('resetToken');
-// //   console.log(resetToken);
-// const [newPassword, setNewPassword] = useState("");
-// const [confirmPassword, setConfirmPassword] = useState("");
-// const [errorMessage, setErrorMessage] = useState("");
-// const [resetToken, setResetToken] = useState("");
-// const navigate = useNavigate();
-
-//   useEffect(() => {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const tokenFromURL = urlParams.get('resetToken');
-//     console.log(tokenFromURL);
-
-//     if (tokenFromURL) {
-//       try {
-//         // Decode and verify the token on the frontend
-//         const decodedToken = jwt.verify(tokenFromURL, 'your-secret-key-here');
-//         console.log(decodedToken);
-
-//         // Check if the decoded token contains the necessary information
-//         // if (decodedToken && decodedToken.resetToken) {
-//         //   setResetToken(decodedToken.resetToken);
-//         // } else {
-//         //   console.error("Token reset tidak valid atau tidak berisi informasi yang diperlukan.");
-//         // }
-//       } catch (error) {
-//         console.error("Gagal memverifikasi token reset:", error.message);
-//       }
-//     } else {
-//       console.error("Token reset tidak ditemukan dalam parameter URL.");
-//     }
-//   }, []);
-
- 
-
-//   const handleResetPassword = async () => {
-//     try {
-//       if (newPassword !== confirmPassword) {
-//         setErrorMessage("Kata sandi baru tidak cocok.");
-//         return;
-//       }
-//       await axios.post(
-//         `http://localhost:2066/account/resetPassword?resetToken=${resetToken}`,
-//         { newPassword }
-//       );
-//       alert('password berhasil diubah')
-//       navigate("/");
-//     } catch (error) {
-//       console.error("Gagal mereset kata sandi:", error.response.data.message);
-//       setErrorMessage(error.response.data.message);
-//     }
-//   };
-
 const ResetPasswordPage = () => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");

@@ -1,14 +1,14 @@
 import Header from "../components/header"
 import Footer from "../components/footer"
 
-function Layout (props) {
+function Layout(props) {
     return (
         <div>
-            <Header/>
+            <Header />
             {props.children}
-            <Footer/>
+            <Footer />
         </div>
     )
 }
 
-export default Layout
+export default Layout;

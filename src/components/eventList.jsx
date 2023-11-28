@@ -67,15 +67,21 @@ function EventList() {
                 <li className={active === 'new' ? 'active' : ''} onClick={() => handleActive('new')}>New</li>
                 <li className={active === 'free' ? 'active' : ''} onClick={() => handleActive('free')}>Free</li>
             </ul>
-            <ul className='eventCardList'>
-                {eventsList.map((event, index) => (
-                    <Link to={`event-details/${event.id}`}>
-                        <li key={index}>
-                            <EventCard event={event} />
-                        </li>
-                    </Link>
-                ))}
-            </ul>
+            {eventsList.length > 0 ? (
+                <ul className='eventCardList'>
+                    {eventsList.map((event, index) => (
+                        <Link to={`event-details/${event.id}`}>
+                            <li key={index}>
+                                <EventCard event={event} />
+                            </li>
+                        </Link>
+                    ))}
+                </ul>
+            ) : (
+                <div className='noEventsFound'>
+                    <p>Sorry, no events available</p>
+                </div>
+            )}
         </div>
     );
 }
