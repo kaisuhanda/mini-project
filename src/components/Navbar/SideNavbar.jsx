@@ -3,6 +3,7 @@ import { Flex, Box, } from "@chakra-ui/react";
 import { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { MdOutlineDashboard, MdOutlineSettings } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const SideNavbar = (props) => {
     return (
@@ -52,7 +53,7 @@ const SideNavbar = (props) => {
                     alignItems={"center"}
                     fontSize={21}
                 >
-                    <MdOutlineSettings size={28} /> Settings
+                    <MdOutlineSettings size={28} /> <Link to={'/ProfileUser'}>Settings </Link>
                 </Flex>
             </Box>
             <Flex

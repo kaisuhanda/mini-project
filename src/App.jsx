@@ -57,7 +57,6 @@ function App() {
       <Route path='/RegisterPromotor' element={<RegisterPromotor />} />
       <Route path='/TypeAccount' element={<TypeAccount />} />
       {/* <Route path='/TypeAccount/:cart/:total' element={<TypeAccount />} /> */}
-      <Route path='/TypeAccount/' element={<TypeAccount />} />
       <Route path='/ProfileUser' element={<ProfileUser />} />
       <Route path='/account/resetPassword/' element={<ResetPasswordPage />} />
       <Route path='/poto' element={<PotoProfile />} />
