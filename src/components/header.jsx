@@ -119,6 +119,11 @@ function Header() {
           )}
         </div>
         <div className="loginSignup">
+          <Link to={'/auth'} className="login"> Log In 
+          </Link>
+          <Link className="signup" onClick={onOpen}>
+            Sign Up
+          </Link>
           {isAuthenticated ? (
             <Popover>
               <PopoverTrigger>

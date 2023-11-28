@@ -12,6 +12,8 @@ const Setting = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [showPassword, setShowPassword] = useState(false);
+    const [showPassword1, setShowPassword1] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
     const [password, setPassword] = useState("");
     const [passwordNew, setPasswordNew] = useState("");
     const [username, setUsername] = useState("");
@@ -32,6 +34,12 @@ const Setting = () => {
     const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
   };
+  const togglePasswordVisibility1 = () => {
+    setShowPassword1(!showPassword1);
+};
+const togglePasswordVisibility2 = () => {
+  setShowPassword2(!showPassword2);
+};
   
   
   const handlePasswordChange = (e) => {
@@ -122,6 +130,8 @@ const Setting = () => {
                        <Button
                            h="2.5rem"
                            size="sm"
+                           _hover={{ bgColor: "transparent" }}
+                           bg={'transparent'}
                            onClick={togglePasswordVisibility}
                            leftIcon={showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                        >
@@ -132,7 +142,7 @@ const Setting = () => {
            <Text textAlign={"left"} fontSize={'20'} >Pasword baru</Text>
            <InputGroup>
                    <Input
-                       type={showPassword ? "text" : "password"}
+                       type={showPassword1 ? "text" : "password"}
                        placeholder='Input your new password '
                        value={passwordNew}
                        onChange={handlePasswordNewChange}
@@ -141,8 +151,10 @@ const Setting = () => {
                        <Button
                            h="2.5rem"
                            size="sm"
-                           onClick={togglePasswordVisibility}
-                           leftIcon={showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                           _hover={{ bgColor: "transparent" }}
+                           bg={'transparent'}
+                           onClick={togglePasswordVisibility1}
+                           leftIcon={showPassword1 ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                        >
                        </Button>
                    </InputRightElement>
@@ -151,7 +163,7 @@ const Setting = () => {
                <Text textAlign={"left"} fontSize={'20'} >konfirmasi Pasword baru</Text>
            <InputGroup>
                    <Input
-                       type={showPassword ? "text" : "password"}
+                       type={showPassword2 ? "text" : "password"}
                        placeholder='Input your new password again'
                        value={passwordNewConfirmation}
                        onChange={handlePasswordConfirmationChange}
@@ -160,8 +172,10 @@ const Setting = () => {
                        <Button
                            h="2.5rem"
                            size="sm"
-                           onClick={togglePasswordVisibility}
-                           leftIcon={showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                           _hover={{ bgColor: "transparent" }}
+                           bg={'transparent'}
+                           onClick={togglePasswordVisibility2}
+                           leftIcon={showPassword2 ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                        >
                        </Button>
                    </InputRightElement>

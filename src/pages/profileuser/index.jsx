@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import {Box,Button,useMenuButton,
@@ -16,9 +16,13 @@ import Setting from "./Setting";
 import { logout } from "../../redux/reducer/accountReducer";
 
 const ProfileUser = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [activeContent, setActiveContent] = useState("profile");
+    const token = localStorage.getItem("token");
+
+    
     
     const switchToProfile = () => {
       setActiveContent("profile");
@@ -30,12 +34,19 @@ const ProfileUser = () => {
       setActiveContent("orders");
     };
 
+
+    useEffect(() => {
+      if (!token){
+        navigate('/');
+      }
+    }, []);
+
     const handleLogout = () => {
       dispatch(logout);
-      navigate('/');
-    };
+      navigate("/");
+  };
 
-  
+
     
 
     return <Box w={'100%'}>
