@@ -17,7 +17,7 @@
         "@reduxjs/toolkit": "^1.9.7",
         "axios": "^1.6.0",
         "dotenv": "^16.3.1",
-        "esbuild": "^0.19.7",
+        "esbuild": "^0.19.8",
         "express-bearer-token": "^2.4.0",
         "framer-motion": "^10.16.4",
         "jsonwebtoken": "^8.5.1",
