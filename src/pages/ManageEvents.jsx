@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ModalTicket from "../components/ModalTicket";
 import useToggle from "../hooks/useToggle";
-import { Button } from "@chakra-ui/react";
+import { Button, } from "@chakra-ui/react";
 
 const ManageEventPage = (props) => {
     const [dataInput, setDataInput] = useState({});
@@ -20,6 +20,7 @@ const ManageEventPage = (props) => {
     const { isOpen, onToggleOpen, onToggleClose } = useToggle();
 
     console.log("DATA INPUUTT", dataInput);
+    // console.log("TICKETS", tickets);
 
     const getEvents = async () => {
         try {
@@ -42,7 +43,6 @@ const ManageEventPage = (props) => {
                     id: events.id
                 }
             })
-
             setTickets(result.data)
 
         } catch (error) {
@@ -52,7 +52,7 @@ const ManageEventPage = (props) => {
 
     useEffect(() => {
         getEvents();
-        getTickets()
+        getTickets();
     }, [])
 
     const addTicket = async (eventId) => {
@@ -63,6 +63,7 @@ const ManageEventPage = (props) => {
                 ...dataInput,
                 price: 0
             })
+            console.log("dataINPUT DALAM ADDTICKET", dataInput);
         };
 
         let temp = { ...dataInput }
@@ -70,6 +71,7 @@ const ManageEventPage = (props) => {
         // const formData = new FormData();
 
         // for (const prop in temp) {
+        //     console.log("PROP", temp[prop]);
         //     formData.append(`${prop}`, temp[prop])
         // }
         // console.log("formDAaTA", formData);
@@ -111,8 +113,9 @@ const ManageEventPage = (props) => {
                         color={"white"}
                         _hover={{ bgColor: "rgb(235, 235, 235)", color: "black" }}
                         onClick={() => {
-                            addTicket()
-                            onToggleClose()
+                            addTicket();
+                            onToggleClose();
+                            getTickets();
                         }}
                     >
                         Create
@@ -130,12 +133,26 @@ const ManageEventPage = (props) => {
                                 category={val["category.category"]}
                                 start_date={new Date(val.start_date).toLocaleDateString("id", { day: "numeric", month: "short", year: "numeric" }) + ", " + new Date(val.start_date).toLocaleTimeString("id")}
                                 end_date={new Date(val.end_date).toLocaleDateString("id", { day: "numeric", month: "short", year: "numeric" }) + ", " + new Date(val.end_date).toLocaleTimeString("id")}
-                                ticketName={
-                                    tickets.map((val, idx) => {
-                                        return val.type
-                                    })}
+                                ticketName={tickets.map((valTk, idxTk) => {
+                                    if (val.id === valTk.event_id) {
+                                        return (
+                                            <>
+                                                <Button
+                                                    key={idx}
+                                                    bgColor={"yellow"}
+                                                // onClick={}
+                                                >
+                                                    {valTk.type}
+                                                </Button>
+                                            </>
+                                        )
+                                    }
+                                })}
                                 delete={() => onDeleteEvent(val.id)}
-                                edit={() => navigate("/update-event")}
+                                edit={() => {
+                                    // setEventID(val.id)
+                                    navigate(`/update-event/${val.id}`)
+                                }}
                                 newTicket={() => {
                                     onToggleOpen();
                                     setDataInput({ ...dataInput, event_id: val.id })
@@ -144,12 +161,9 @@ const ManageEventPage = (props) => {
                                     navigate(`/event-details/${val.id}`)
                                 }}
                             />
-
                         </>
                     )
-                })
-                }
-
+                })}
             </div>
 
         </LayoutPage>

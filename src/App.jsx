@@ -68,7 +68,7 @@ function App() {
       <Route path="/event-details/:event_id" element={<EventDetails />} />
       <Route path='/dashboard' element={<ManageEventPage />} />
       <Route path="/create-event" element={<CreateEvent />} />
-      <Route path='/update-event' element={<UpdateEvent />} />
+      <Route path='/update-event/:event_id' element={<UpdateEvent />} />
 
       {/* umum */}
       <Route path="*" element={<NotFoundPage />} />

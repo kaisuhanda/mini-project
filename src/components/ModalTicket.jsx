@@ -96,6 +96,7 @@ const ModalTicket = (props) => {
                 </ModalBody>
                 <ModalFooter>
                     {props.buttonCreate}
+                    {props.buttonDelete}
                 </ModalFooter>
             </ModalContent>
         </Modal >
