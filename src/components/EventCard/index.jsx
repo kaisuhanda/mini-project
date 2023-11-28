@@ -33,36 +33,39 @@ const EventCardDashboard = (props) => {
                 borderStartRadius={10}
                 _hover={{ cursor: "pointer" }}
             />
+            <Box>
+                <Flex
+                    onClick={props.onClick}
+                    flexDirection={"column"}
+                    gap={4}
+                    _hover={{ cursor: "pointer" }}
+                    marginBottom={3}
+                >
+                    <Text
+                        height={"fit-content"}
+                        width={"fit-content"}
+                        fontSize={21}
+                        fontWeight={700}
+                    >
+                        {props.title}
+                    </Text>
+                    <Text
 
-            <Flex
-                onClick={props.onClick}
-                flexDirection={"column"}
-                gap={4}
-                _hover={{ cursor: "pointer" }}
-            >
-                <Text
-                    height={"fit-content"}
-                    width={"fit-content"}
-                    fontSize={21}
-                    fontWeight={700}
-                >
-                    {props.title}
-                </Text>
-                <Text
+                        height={"fit-content"}
+                        width={"fit-content"}
+                        fontSize={14}
+                    >
+                        {props.category}
+                    </Text>
 
-                    height={"fit-content"}
-                    width={"fit-content"}
-                    fontSize={14}
-                >
-                    {props.category}
-                </Text>
-                <Button
-                    bgColor={"yellow"}
-                    color={"black"}
-                >
+                </Flex>
+
+                <Flex gap={2}>
                     {props.ticketName}
-                </Button>
-            </Flex>
+                </Flex>
+
+            </Box>
+
             <Flex
                 flexDirection={"column"}
                 gap={1}

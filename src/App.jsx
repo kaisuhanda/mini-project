@@ -66,7 +66,7 @@ function App() {
       {/* bagian e khalid */}
       <Route path='/dashboard' element={<ManageEventPage />} />
       <Route path="/create-event" element={<CreateEvent />} />
-      <Route path='/update-event' element={<UpdateEvent />} />
+      <Route path='/update-event/:event_id' element={<UpdateEvent />} />
       {/* umum */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

@@ -66,7 +66,7 @@ const ModalLocation = (props) => {
                                         <Input
                                             type="string"
                                             onChange={props.address}
-                                            value={props.valueAddress}
+                                            defaultValue={props.valueAddress}
                                         />
                                     </Box>
                                     <Box marginBlock={5}>
@@ -76,7 +76,7 @@ const ModalLocation = (props) => {
                                         <Select
                                             placeholder="Select Category Event"
                                             onChange={props.city}
-                                            value={props.valueCity}
+                                            defaultValue={props.valueCity}
                                         >
 
                                             {cities.map((val, idx) => {
@@ -103,6 +103,7 @@ const ModalLocation = (props) => {
                                     placeholder="URL Livestream"
                                     type="url"
                                     onChange={props.urlOnline}
+                                    defaultValue={props.url}
                                 />
                             </ModalBody>
                     }

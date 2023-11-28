@@ -7,7 +7,6 @@ import store from './redux/reducer/globalState.js'
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react'
 import dotenv from 'dotenv';
-import { API_URL } from '../helper.js'
 // import { globalState } from './redux/index.js'
 
 

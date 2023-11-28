@@ -16,7 +16,7 @@ import "./index.css"
 import ModalLocation from "../../components/ModalLocation";
 import FooterCreate from "../../components/FooterCreateEvent";
 import { API_CALL } from "../../helper/helper.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const CreateEvent = () => {
@@ -30,6 +30,7 @@ const CreateEvent = () => {
         return state.auth
     });
     // console.log("STAATTEE", accountData);
+    const params = useParams();
 
     console.log("DATA INPUT", dataInput);
 
@@ -53,10 +54,11 @@ const CreateEvent = () => {
 
     const onCreate = async () => {
 
-        if (!dataInput.price) {
+        if (!dataInput.price && !dataInput.promoter_id) {
             setDataInput({
                 ...dataInput,
-                price: 0
+                price: 0,
+                promoter_id: accountData.id
             })
         }
 
@@ -69,6 +71,7 @@ const CreateEvent = () => {
         }
 
         let temp = { ...dataInput };
+        console.log("TEMPP", temp);
 
         const formData = new FormData()
 
@@ -81,10 +84,9 @@ const CreateEvent = () => {
         }
         console.log("formDAaTA", formData);
         try {
-
             const result = await API_CALL.post(
-                "/events",
-                formData
+                `/events/${params.id}`,
+                temp
             );
             navigate("/dashboard")
 
@@ -237,8 +239,13 @@ const CreateEvent = () => {
 
             </Box>
             <FooterCreate
-                event="Create Event"
-                onClick={onCreate}
+                event={
+                    <Button
+                        onClick={onCreate}
+                    >
+                        Create Event
+                    </Button>
+                }
             />
         </>
     )
