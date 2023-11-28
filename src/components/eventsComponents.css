@@ -114,18 +114,23 @@ input:checked+.slider::before {
     opacity: 0.5;
 }
 
-@media (max-width: 430px) {
-    .sidebar {
-        display: none;
+@media (max-width: 1024px) {
+    .contentContainer{
+        height: 100vh;
     }
+    .onetwo{
+        margin-bottom: 800px;
+    }
+}
 
+@media (max-width: 430px) {
     .sidebar.visible {
         display: block;
-        position: fixed;
+        position: absolute;
         right: 0;
         background-color: white;
         z-index: 2;
-        height: 100vh;
+        height: 800px;
     }
 
     .showing {

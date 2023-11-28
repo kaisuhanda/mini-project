@@ -72,7 +72,7 @@ function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleT
         });
         console.log('test online');
     };
-    
+
     const handleToggleFree = () => {
         setIsFree(!isFree)
         toggleFree()
@@ -95,8 +95,12 @@ function Sidebar({ toggleFree, toggleOnline, handleCategory, handleCity, handleT
         console.log('test', time);
     }
 
+    const sidebarStyle = {
+        height: window.innerWidth <= 1024 ? '800px' : 'auto'
+    }
+
     return (
-        <div className={`sidebar ${showSidebar ? 'visible' : ''}`}>
+        <div className={`sidebar ${showSidebar ? 'visible' : ''}`} style={sidebarStyle}>
             <div className="filter">
                 Filter
                 <button className='reset' onClick={resetFilters}>

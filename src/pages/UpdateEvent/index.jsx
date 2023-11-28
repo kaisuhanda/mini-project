@@ -16,57 +16,62 @@ import "./index.css"
 import ModalLocation from "../../components/ModalLocation/index.jsx";
 import FooterCreate from "../../components/FooterCreateEvent/index.jsx";
 import { API_CALL } from "../../helper/helper.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const UpdateEvent = () => {
     const [dataInput, setDataInput] = useState({});
     const [categories, setCategories] = useState([]);
     const [images, setImages] = useState([]);
+    const [event, setEvent] = useState({});
     const { isOpen, onToggleOpen, onToggleClose } = useToggle();
     const modal2 = useToggle();
     const navigate = useNavigate();
     const accountData = useSelector((state) => {
         return state.auth
     });
+    const params = useParams();
     // console.log("STAATTEE", accountData);
+    // console.log("DATA INPUT", dataInput);
+    console.log("EVENT", event);
 
-    console.log("DATA INPUT", dataInput);
+    const getEventDetails = async () => {
+        try {
+            const result = await API_CALL.get(`/events/${params.event_id}`)
+            // console.log("RESULT", result);
+            setEvent(result.data);
+        } catch (error) {
+            console.log("error while getting event details", error);
+        }
+    };
+
+    const printCategories = async () => {
+        try {
+            const response = await API_CALL.get("/categories/get-cat", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            setCategories(response.data.result);
+        } catch (error) {
+            console.log("ERROR PRINT CATEGORIES", error);
+        }
+    };
 
     // ambil categories dari database
     useEffect(() => {
-        const printCategories = async () => {
-            try {
-                const response = await API_CALL.get("/categories/get-cat", {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                    }
-                })
-                setCategories(response.data.result);
-            } catch (error) {
-                console.log("ERROR PRINT CATEGORIES", error);
-            }
-        }
-
         printCategories();
+        getEventDetails();
     }, [])
 
-    const onCreate = async () => {
-
-        if (!dataInput.price) {
-            setDataInput({
-                ...dataInput,
-                price: 0
-            })
-        }
-
+    const onUpdate = async () => {
         // AMBIL ID DARI TOKEN
-        if (!dataInput.promoter_id) {
-            setDataInput({
-                ...dataInput,
-                promoter_id: accountData.id
-            })
-        }
+        // if (!dataInput.promoter_id) {
+        //     setDataInput({
+        //         ...dataInput,
+        //         promoter_id: accountData.id
+        //     })
+        // }
 
         let temp = { ...dataInput };
 
@@ -82,8 +87,8 @@ const UpdateEvent = () => {
 
         try {
 
-            const result = await API_CALL.post(
-                "/events",
+            const result = await API_CALL.patch(
+                `/events/${params.event_id}`,
                 formData
             );
             navigate("/dashboard")
@@ -95,24 +100,15 @@ const UpdateEvent = () => {
 
     return (
         <>
-            <ModalTicket
-                isOpen={isOpen}
-                onClose={onToggleClose}
-                type={(e) => setDataInput({ ...dataInput, type: e.target.value })}
-                price={(e) => setDataInput({ ...dataInput, price: e.target.value })}
-                amount={(e) => setDataInput({ ...dataInput, stock: e.target.value })}
-                start_sales={(e) => setDataInput({ ...dataInput, start_sales: e.target.value })}
-                end_sales={(e) => setDataInput({ ...dataInput, end_sales: e.target.value })}
-            />
-
             <ModalLocation
                 isOpen={modal2.isOpen}
                 onClose={modal2.onToggleClose}
                 address={(e) => setDataInput({ ...dataInput, location: e.target.value })}
                 city={(e) => setDataInput({ ...dataInput, city_id: e.target.value })}
                 urlOnline={(e) => setDataInput({ ...dataInput, location: e.target.value })}
-                valueAddress={dataInput.location}
-                valueCity={dataInput.city_id}
+                valueAddress={event.location}
+                valueCity={event.city_id}
+                url={event.location}
             />
 
             <Flex
@@ -135,7 +131,13 @@ const UpdateEvent = () => {
                         <FormLabel>
                             Event Name
                         </FormLabel>
-                        <Input className="box-shadow" type="string" placeholder={"Be clear and descriptive."} onChange={(e) => setDataInput({ ...dataInput, name: e.target.value })} />
+                        <Input
+                            className="box-shadow"
+                            type="string"
+                            placeholder={"Be clear and descriptive."}
+                            onChange={(e) => setDataInput({ ...dataInput, name: e.target.value })}
+                            defaultValue={event.name}
+                        />
                     </FormControl>
                     <Flex justifyContent={"space-between"}>
 
@@ -144,8 +146,11 @@ const UpdateEvent = () => {
                             <FormControl isRequired>
                                 <FormLabel >Start Date</FormLabel>
                                 <Input
-                                    type={"datetime-local"} placeholder={"Choose Date"} marginBottom={5}
+                                    type={"datetime-local"}
+                                    placeholder={"Choose Date"}
+                                    marginBottom={5}
                                     onChange={(e) => setDataInput({ ...dataInput, start_date: e.target.value })}
+                                    defaultValue={event.start_date}
                                 />
                                 {/* <FormHelperText>Input When Event is Started</FormHelperText> */}
                             </FormControl>
@@ -155,6 +160,7 @@ const UpdateEvent = () => {
                                     type={"datetime-local"}
                                     placeholder={"Choose Date"}
                                     onChange={(e) => setDataInput({ ...dataInput, end_date: e.target.value })}
+                                    defaultValue={event.end_state}
                                 />
                             </FormControl>
                         </Flex>
@@ -181,6 +187,7 @@ const UpdateEvent = () => {
                                 placeholder={"Event Description"}
                                 height={200}
                                 onChange={(e) => setDataInput({ ...dataInput, description: e.target.value })}
+                                defaultValue={event.description}
                             />
                         </FormControl>
                     </Box>
@@ -194,6 +201,7 @@ const UpdateEvent = () => {
                                     return setImages(e.target.files)
                                 }}
                                 multiple
+                            // defaultValue={event.name}
                             />
                         </FormControl>
                     </Box>
@@ -203,9 +211,10 @@ const UpdateEvent = () => {
                                 Category
                             </FormLabel>
                             <Select
-                                placeholder="Select Category Event"
                                 onChange={(e) => { setDataInput({ ...dataInput, category_id: e.target.value }) }
-                                }>
+                                }
+                                defaultValue={event.category_id}
+                            >
 
                                 {categories.map((val, idx) => {
                                     return (
@@ -241,8 +250,16 @@ const UpdateEvent = () => {
                     >
                         Cancel
                     </Button>}
-                onClick={onCreate}
-                event="Update Event"
+                event={<Button
+                    position={"absolute"}
+                    right={20}
+                    top={3}
+                    onClick={onUpdate}
+                    color={"white"}
+                    bgColor={"rgba(253, 166, 0, 255)"}
+                >
+                    Update Event
+                </Button>}
             />
         </>
     )

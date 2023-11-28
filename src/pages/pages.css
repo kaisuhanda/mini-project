@@ -228,6 +228,11 @@ body {
         width: 100%;
         padding-left: 40px;
     }
+
+    .sidebar .visible {
+        height: 1157px;
+    }
+
 }
 
 
